@@ -1,0 +1,256 @@
+/* Global styles - override editor.css */
+a
+{
+	color: #0496C0;
+}
+#TopMenuWide ul#TopMenu li a
+{
+	color: #FFFFFF;
+}
+#TopMenuWide ul#TopMenu li.selected a
+{
+		color: #0496C0;
+}
+div.linkMenu ul li a.selected, div.linkMenu ul li a:hover
+{
+	color: #0496C0 !important;
+}
+div.linkMenu ul li a.expanded
+{
+	background: url("/styles/WebForms/Themes/Blue/arrow_down.gif") no-repeat 4px center;
+}
+a:hover
+{
+	color: #003366!important;
+}
+h1, .heading1
+{
+}
+h2, .heading2
+{
+}
+h3, .heading3
+{
+}
+.figure
+{
+}
+
+/* Structure */
+#MainAreaDiv a:visited, #RightRegion a:visited, .TextContent a:visited
+{
+	color: #028CB5;
+}
+#MainContainerDiv a:visited:hover
+{
+	color: #028CB5;
+}
+
+#ContainerDiv
+{
+}
+#MainContainerDivBG
+{
+	border-top: 1px solid #B4C2D2;
+}	
+#MainContainerDiv
+{
+}
+#TopContainerWide
+{
+}
+#TopContainer
+{
+}
+#TopMenuWide
+{
+}
+#TopMenu
+{
+}
+.MenuHead, .ActiveMenuHead
+{
+}
+.MenuHead.First, .ActiveMenuHead.First
+{
+}
+.MenuHead
+{
+}
+.ActiveMenuHead
+{
+	color: #0496C0;
+}
+.MenuHead:hover, .ActiveMenuHead:hover
+{
+}
+.NextMenuHead
+{
+}
+
+#BreadCrumbWide
+{
+}
+#BreadCrumb
+{
+	color: #0496C0;
+}
+#BreadCrumb a
+{
+	color: #0496C0;
+}
+#BreadCrumb a.Selected
+{
+}
+#AlernativeBreadCrumb
+{
+	background-color: #999999;
+}
+
+
+#FooterDiv
+{
+	background-color: #D7E7F2;
+}
+#FullRegion
+{
+	border-bottom: 8px solid #999999;
+}
+.ProjectFrontpage #ContainerFromHeader
+{
+	clear:left;
+	background-image: url(shadow.jpg);
+	background-position: 136px 8px;
+	background-repeat: no-repeat;	
+}
+.ProjectFrontpageSimple #ContainerFromHeader
+{
+	background-image: url(shadow_simple.jpg);
+	background-position: 0px 12px;
+	background-repeat: no-repeat;	
+}
+div.MenuItem
+{
+}
+div.MenuItem .MenuEnd
+{
+	border-bottom: 4px solid #CDCBCC;
+}
+div.MenuItem a.MenuLink
+{
+	color: #292929;
+	background-color: #CDCBCC;
+}
+div.MenuItem a.MenuLink:hover
+{
+	color: #0496C0!important;
+}
+div.MenuItem.NoBorder a.MenuLink
+{
+}
+div.MenuItem.Parent a.MenuLink
+{
+}
+div.MenuItem.SelectedParent a.MenuLink
+{
+	background-image: url(arrow_down.gif);
+}
+div.MenuItem.Selected a.MenuLink, div.MenuItem.SelectedParent a.MenuLink
+{
+	color: #0496C0;
+	background-color: #FFFFFF;
+}
+div.MenuItem.Selected a.MenuLink:hover, div.MenuItem.SelectedParent a.MenuLink:hover, div.MenuItem.Expanded a.MenuLink:hover
+{
+	color: #0496C0!important;
+}
+
+.SectionContainer
+{
+}
+#MainArea .SectionLabel, #FullRegion .SectionLabel
+{
+}
+#LeftRegion .SectionLabel, #RightRegion .SectionLabel
+{
+	background-color: #999999;
+	color: #FFFFFF;
+}
+
+.HeaderContainerOuter
+{
+	background-color: #FFFFFF;
+	padding: 14px;
+}
+.HeaderContainer
+{
+	border-top: 1px solid #E9F2F9;
+	background-color: #E9F2F9;
+	height: 224px;
+	min-height: 224px;
+}
+html>body .HeaderContainer
+{
+	height: auto;
+}
+.HeaderContainerInner
+{
+	margin: 24px;	
+}
+.ProjectFrontpageSimple .HeaderContainer
+{
+	height: 268px;
+	min-height: 268px;
+}
+html>body .ProjectFrontpageSimple .HeaderContainer
+{
+	height: auto;
+}
+.ProjectFrontpageSimple .HeaderContainerInner
+{
+	margin: 32px 16px 16px 16px;
+}
+.HeaderContainer h1.HeaderTitle
+{
+}
+.SubContainer
+{
+}
+.FirstCol
+{
+}
+.LastCol
+{
+}
+.SubContainer .BodyContainer
+{
+	border-bottom: 1px solid #BFBFBF;
+}
+.SubContainer h2.SubTitle
+{
+	color: #003366;
+	border-bottom: 1px solid #BFBFBF;
+}
+.SubContainerCol
+{
+}
+.MarkedContainer .SectionLabel
+{
+}
+.MarkedContainer .Container
+{
+	background-color: #EAF3FA;
+}
+
+tr.searchResultsTableHeader
+{
+	background-color:#999999;
+	color:#FFFFFF;
+	height:20px;
+	font-weight:bold;
+}
+tr.searchResultsTableHeader a:hover
+{
+	color: #FFFFFF !important;
+	text-decoration:underline;
+}

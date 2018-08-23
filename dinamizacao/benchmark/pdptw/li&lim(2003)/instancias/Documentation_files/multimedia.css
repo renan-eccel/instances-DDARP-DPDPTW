@@ -1,0 +1,31 @@
+﻿/* Image Carousel */
+.carouselwrapper {
+    display: none;
+}
+.imageCarousel 
+{
+    display: block;
+    text-align: center;
+    margin: 5px auto;
+    padding: 5px;
+
+}
+.imageCarousel span
+{
+    display: inline;
+    text-align: left;
+}
+
+.imageCarousel span a 
+{
+    display: inline-block;
+    height: 90px;
+    padding: 2px;
+}
+
+.imageCarousel span img
+{
+    height: 100%;
+    padding: 2px;
+    border: 1px solid #E3DFDB;
+}
