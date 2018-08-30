@@ -65,7 +65,7 @@ Sendo $\vehiclesSet$ o conjunto de veículos. Cada veículo $\vehicle \in \vehic
 
     \item Segundo \textcite{pillac_review_2013}, são escassas as instâncias de benchmark para roteamento veicular dinâmico que sejam amplamente usadas.
 
-    \item \textcite{van_lon_measures_2016} define uma métrica para dinamismo em instâncias PDPTW e afirma que distribuições Poisson homogenias conseguem apenas criar cenários de 45 a 60 \% dinâmicos. 
+    \item \textcite{van_lon_measures_2016} define uma métrica para dinamismo em instâncias PDPTW e afirma que distribuições Poisson homogêneas conseguem apenas criar cenários de 45 a 60 \% dinâmicos. 
 
    \item \textcite{van_lon_measures_2016} define uma métrica para urgência que se assemelha com o "grau de dinamismo efetivo" proposto por \textcite{larsen_partially_2002}, sendo a única diferença a normalização, em relação ao tamanho do cenário, que \textcite{larsen_partially_2002} executa. \textcite{van_lon_measures_2016} acredita que a extensão do cenário e a urgência devem ser independentes.
 
@@ -74,6 +74,10 @@ Sendo $\vehiclesSet$ o conjunto de veículos. Cada veículo $\vehicle \in \vehic
    \item \textcite{berbeglia_hybrid_2012} considera um tempo entre fim da janela de tempo de coleta e início da janela de entrega como sendo igual ao tempo de viagem entre os pontos de coleta e entrega.
    
    \item \textcite{schilde_metaheuristics_2011} descreve o processo de avaliar estatisticamente uma instância DARP.
+   
+   \item \textcite{fujita_vehicle_2003} usa um limite inferior igual a 30 para o tempo de viagem entre origem e destino dos pedidos, levando em conta que valores menores seriam caminhados.
+   
+   \item \textcite{fujita_vehicle_2003} sorteia uniformemente os instantes de chegada dos pedidos ($\requestArrivalTime = \uniformDistribution{1}{\planingHorizon}$). Após isso, se calcula o limite superior de chegada no destino.
 
 \end{itemize}
 
@@ -516,7 +520,7 @@ O que representa o último instante que um veículo deve partir do depósito par
 \subsubsection{Segundo conjunto (P2)}
 Em contraste com P1, o segundo conjunto consiste de instâncias com diferentes graus de pedidos estáticos. Estes foram gerados através da variação de um parâmetro $\staticPercentage$ entre 0,1 e 0,9 com passos de 0,1. Todos os pedidos estáticos foram escolhidos aleatoriamente entre o conjunto de todos os pedidos das instâncias estáticas. Já os pedidos dinâmicos receberem o último instante de chegada possível $\arrivalTime_\request = \requestLatestArrivalTime$. Para reduzir o risco de viés estocástico ao sortear os pedidos estáticos, 10 instâncias DPDPTW foram geradas para cada possível valor de $\staticPercentage$ resultando em um total de 5.040 instâncias no conjunto.
 
-\subsection{Instâncias DDARP propostas por }
+
 
 \printbibliography
 \end{document} 
