@@ -1,0 +1,42 @@
+Each instance consists of the two files
+   <Name> _coord.csv
+   <Name> .csv
+
+In the file <Name> _coord.csv the coordinates of the places to be approached are in the Cartesian coordinate system.
+The Euclidean distance is taken as a basis.
+
+The file contains in each line:
+Number of the place; x-coordinate; y coordinate
+
+The place No. 0 is the depot.
+
+
+
+The file <name> .csv contains all information about the vehicles and the orders.
+
+In the first line are the vehicle data:
+Number of vehicles; Capacity; lower time slot limit; upper time window limit
+
+The following lines contain the orders:
+No. of pickup location; No. of delivery location; lower time window limit pickup; upper time window limit pickup; lower time window limit Delivery; upper time window limit Delivery; required capacity; Call time; Service time pickup; Service time delivery
+
+Firt Line: |K|;Q;0;H
+Others: i;i+n;e_i;l_i;e_{i+n};l_{i+n};q_i;a_i;d_i;d_i
+
+  
+
+-------------------------------------------------- -----------------------------
+
+To the origin of the instances:
+
+Based on the test data sets for the Pickup and Delivery VRP with Time Windows (PDVRPTW) from Li & Lim,
+which were derived from the Solomon benchmarks.
+
+The following procedure was used to generate the test data records:
+
+1. For each job, a random call time was generated, ranging from 0 to the minimum of lower
+Pickup time window limit and upper delivery time window limit minus the travel time from pickup to
+Delivery location is. Then the orders were sorted in order of their call time.
+
+2. The number of vehicles has been reduced: there are only as many vehicles available as in the best
+known solutions for the PDVRPTW from Li & Lim (as of September 2004).
