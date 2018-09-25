@@ -10,7 +10,7 @@ def for_all_files_in(directory):
 
 def create_dataframe(directory, filename):
     df = pd.read_csv(directory + filename, sep=" ")
-    df.columns = ['request_arrival_time',
+    df.columns = ['arrival_time',
                   'pickup_service_time',
                   'pickup_x_coord', 'pickup_y_coord',
                   'pickup_lower_tw', 'pickup_upper_tw',
