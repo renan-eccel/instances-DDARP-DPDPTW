@@ -1,10 +1,10 @@
 {
     "static_info": {
         "name": "req_rapide_2_240_33.txt",
-        "number_of_vehicles": "???",
+        "number_of_vehicles": "10 or 20",
         "vehicles_capacity": "inf",
-        "max_route_time": 240,
-        "planing_horizon": 240,
+        "max_route_time": 14400,
+        "planing_horizon": 14400,
         "euclidean_plane_size": "[0,5] X [0,5]",
         "travel_time_between_nodes": "EuclideanDistance / 30",
         "depot_location": {
@@ -12,8 +12,10 @@
             "y_coord": 2.5
         }
     },
-    "request": [
+    "requests": [
         {
+            "id": 1,
+            "load": 0,
             "arrival_time": 29.0232,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 3944.18,
@@ -31,6 +33,8 @@
             }
         },
         {
+            "id": 2,
+            "load": 0,
             "arrival_time": 105.343,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 3929.46,
@@ -48,6 +52,8 @@
             }
         },
         {
+            "id": 3,
+            "load": 0,
             "arrival_time": 114.006,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 1896.45,
@@ -65,6 +71,8 @@
             }
         },
         {
+            "id": 4,
+            "load": 0,
             "arrival_time": 349.976,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 5169.61,
@@ -82,6 +90,8 @@
             }
         },
         {
+            "id": 5,
+            "load": 0,
             "arrival_time": 354.874,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 3158.05,
@@ -99,6 +109,8 @@
             }
         },
         {
+            "id": 6,
+            "load": 0,
             "arrival_time": 553.428,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 5919.41,
@@ -116,6 +128,8 @@
             }
         },
         {
+            "id": 7,
+            "load": 0,
             "arrival_time": 580.222,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 2365.64,
@@ -133,6 +147,8 @@
             }
         },
         {
+            "id": 8,
+            "load": 0,
             "arrival_time": 619.188,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 2919.81,
@@ -150,6 +166,8 @@
             }
         },
         {
+            "id": 9,
+            "load": 0,
             "arrival_time": 787.101,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 3095.24,
@@ -167,6 +185,8 @@
             }
         },
         {
+            "id": 10,
+            "load": 0,
             "arrival_time": 850.561,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 12219.7,
@@ -184,6 +204,8 @@
             }
         },
         {
+            "id": 11,
+            "load": 0,
             "arrival_time": 910.737,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 2116.55,
@@ -201,6 +223,8 @@
             }
         },
         {
+            "id": 12,
+            "load": 0,
             "arrival_time": 1273.36,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 4766.64,
@@ -218,6 +242,8 @@
             }
         },
         {
+            "id": 13,
+            "load": 0,
             "arrival_time": 1386.98,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 1705.85,
@@ -235,6 +261,8 @@
             }
         },
         {
+            "id": 14,
+            "load": 0,
             "arrival_time": 1575.07,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6330.44,
@@ -252,6 +280,8 @@
             }
         },
         {
+            "id": 15,
+            "load": 0,
             "arrival_time": 1619.29,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 3700.85,
@@ -269,6 +299,8 @@
             }
         },
         {
+            "id": 16,
+            "load": 0,
             "arrival_time": 1623.22,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 4091.73,
@@ -286,6 +318,8 @@
             }
         },
         {
+            "id": 17,
+            "load": 0,
             "arrival_time": 1664.74,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10591.3,
@@ -303,6 +337,8 @@
             }
         },
         {
+            "id": 18,
+            "load": 0,
             "arrival_time": 1704.93,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 3764.07,
@@ -320,6 +356,8 @@
             }
         },
         {
+            "id": 19,
+            "load": 0,
             "arrival_time": 1789.41,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9367.96,
@@ -337,6 +375,8 @@
             }
         },
         {
+            "id": 20,
+            "load": 0,
             "arrival_time": 1868.04,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6245.26,
@@ -354,6 +394,8 @@
             }
         },
         {
+            "id": 21,
+            "load": 0,
             "arrival_time": 2316.64,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9111.51,
@@ -371,6 +413,8 @@
             }
         },
         {
+            "id": 22,
+            "load": 0,
             "arrival_time": 2498.6,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 2721.86,
@@ -388,6 +432,8 @@
             }
         },
         {
+            "id": 23,
+            "load": 0,
             "arrival_time": 2790.46,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6063.58,
@@ -405,6 +451,8 @@
             }
         },
         {
+            "id": 24,
+            "load": 0,
             "arrival_time": 2823.82,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 3276.05,
@@ -422,6 +470,8 @@
             }
         },
         {
+            "id": 25,
+            "load": 0,
             "arrival_time": 3172.76,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 4534.07,
@@ -439,6 +489,8 @@
             }
         },
         {
+            "id": 26,
+            "load": 0,
             "arrival_time": 3223.41,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 4498.39,
@@ -456,6 +508,8 @@
             }
         },
         {
+            "id": 27,
+            "load": 0,
             "arrival_time": 3250.89,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 4262.89,
@@ -473,6 +527,8 @@
             }
         },
         {
+            "id": 28,
+            "load": 0,
             "arrival_time": 3505.23,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 7826.63,
@@ -490,6 +546,8 @@
             }
         },
         {
+            "id": 29,
+            "load": 0,
             "arrival_time": 3640.9,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6134.28,
@@ -507,6 +565,8 @@
             }
         },
         {
+            "id": 30,
+            "load": 0,
             "arrival_time": 3714.58,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 7387.04,
@@ -524,6 +584,8 @@
             }
         },
         {
+            "id": 31,
+            "load": 0,
             "arrival_time": 3750.48,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 7661.33,
@@ -541,6 +603,8 @@
             }
         },
         {
+            "id": 32,
+            "load": 0,
             "arrival_time": 3834.41,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6104.43,
@@ -558,6 +622,8 @@
             }
         },
         {
+            "id": 33,
+            "load": 0,
             "arrival_time": 3912.02,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6078.01,
@@ -575,6 +641,8 @@
             }
         },
         {
+            "id": 34,
+            "load": 0,
             "arrival_time": 3965.52,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8114.38,
@@ -592,6 +660,8 @@
             }
         },
         {
+            "id": 35,
+            "load": 0,
             "arrival_time": 3973.21,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 7939.73,
@@ -609,6 +679,8 @@
             }
         },
         {
+            "id": 36,
+            "load": 0,
             "arrival_time": 4154.86,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6004.24,
@@ -626,6 +698,8 @@
             }
         },
         {
+            "id": 37,
+            "load": 0,
             "arrival_time": 4209.99,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 7970.47,
@@ -643,6 +717,8 @@
             }
         },
         {
+            "id": 38,
+            "load": 0,
             "arrival_time": 4211.71,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6482.54,
@@ -660,6 +736,8 @@
             }
         },
         {
+            "id": 39,
+            "load": 0,
             "arrival_time": 4271.85,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8881.12,
@@ -677,6 +755,8 @@
             }
         },
         {
+            "id": 40,
+            "load": 0,
             "arrival_time": 4316.29,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 7555.83,
@@ -694,6 +774,8 @@
             }
         },
         {
+            "id": 41,
+            "load": 0,
             "arrival_time": 4462.76,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 7777.69,
@@ -711,6 +793,8 @@
             }
         },
         {
+            "id": 42,
+            "load": 0,
             "arrival_time": 4480.8,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6616.42,
@@ -728,6 +812,8 @@
             }
         },
         {
+            "id": 43,
+            "load": 0,
             "arrival_time": 4500.33,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 5741.92,
@@ -745,6 +831,8 @@
             }
         },
         {
+            "id": 44,
+            "load": 0,
             "arrival_time": 4766.99,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 7770.14,
@@ -762,6 +850,8 @@
             }
         },
         {
+            "id": 45,
+            "load": 0,
             "arrival_time": 4791.86,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10532.2,
@@ -779,6 +869,8 @@
             }
         },
         {
+            "id": 46,
+            "load": 0,
             "arrival_time": 4808.53,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6089.23,
@@ -796,6 +888,8 @@
             }
         },
         {
+            "id": 47,
+            "load": 0,
             "arrival_time": 5111.21,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 12855.3,
@@ -813,6 +907,8 @@
             }
         },
         {
+            "id": 48,
+            "load": 0,
             "arrival_time": 5172.97,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9945.8,
@@ -830,6 +926,8 @@
             }
         },
         {
+            "id": 49,
+            "load": 0,
             "arrival_time": 5176.42,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 5683.88,
@@ -847,6 +945,8 @@
             }
         },
         {
+            "id": 50,
+            "load": 0,
             "arrival_time": 5188.35,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10420.5,
@@ -864,6 +964,8 @@
             }
         },
         {
+            "id": 51,
+            "load": 0,
             "arrival_time": 5430.75,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6342.5,
@@ -881,6 +983,8 @@
             }
         },
         {
+            "id": 52,
+            "load": 0,
             "arrival_time": 5500.75,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 7560.67,
@@ -898,6 +1002,8 @@
             }
         },
         {
+            "id": 53,
+            "load": 0,
             "arrival_time": 5594.95,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 12208.4,
@@ -915,6 +1021,8 @@
             }
         },
         {
+            "id": 54,
+            "load": 0,
             "arrival_time": 5676.86,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 7598.36,
@@ -932,6 +1040,8 @@
             }
         },
         {
+            "id": 55,
+            "load": 0,
             "arrival_time": 5710.86,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8144.07,
@@ -949,6 +1059,8 @@
             }
         },
         {
+            "id": 56,
+            "load": 0,
             "arrival_time": 5727.04,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 6112.9,
@@ -966,6 +1078,8 @@
             }
         },
         {
+            "id": 57,
+            "load": 0,
             "arrival_time": 6068.34,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8204.24,
@@ -983,6 +1097,8 @@
             }
         },
         {
+            "id": 58,
+            "load": 0,
             "arrival_time": 6274.72,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9019.27,
@@ -1000,6 +1116,8 @@
             }
         },
         {
+            "id": 59,
+            "load": 0,
             "arrival_time": 6279.25,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8660.89,
@@ -1017,6 +1135,8 @@
             }
         },
         {
+            "id": 60,
+            "load": 0,
             "arrival_time": 6427.35,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 11653.8,
@@ -1034,6 +1154,8 @@
             }
         },
         {
+            "id": 61,
+            "load": 0,
             "arrival_time": 7352.53,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8936.95,
@@ -1051,6 +1173,8 @@
             }
         },
         {
+            "id": 62,
+            "load": 0,
             "arrival_time": 7443.14,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8788.4,
@@ -1068,6 +1192,8 @@
             }
         },
         {
+            "id": 63,
+            "load": 0,
             "arrival_time": 7518.44,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 7832.89,
@@ -1085,6 +1211,8 @@
             }
         },
         {
+            "id": 64,
+            "load": 0,
             "arrival_time": 7641.06,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8741.1,
@@ -1102,6 +1230,8 @@
             }
         },
         {
+            "id": 65,
+            "load": 0,
             "arrival_time": 8007.3,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8911.11,
@@ -1119,6 +1249,8 @@
             }
         },
         {
+            "id": 66,
+            "load": 0,
             "arrival_time": 8010.85,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 11932.0,
@@ -1136,6 +1268,8 @@
             }
         },
         {
+            "id": 67,
+            "load": 0,
             "arrival_time": 8022.11,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9054.81,
@@ -1153,6 +1287,8 @@
             }
         },
         {
+            "id": 68,
+            "load": 0,
             "arrival_time": 8141.38,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8956.07,
@@ -1170,6 +1306,8 @@
             }
         },
         {
+            "id": 69,
+            "load": 0,
             "arrival_time": 8184.73,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9859.62,
@@ -1187,6 +1325,8 @@
             }
         },
         {
+            "id": 70,
+            "load": 0,
             "arrival_time": 8200.94,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10264.0,
@@ -1204,6 +1344,8 @@
             }
         },
         {
+            "id": 71,
+            "load": 0,
             "arrival_time": 8223.38,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8900.22,
@@ -1221,6 +1363,8 @@
             }
         },
         {
+            "id": 72,
+            "load": 0,
             "arrival_time": 8261.22,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9898.22,
@@ -1238,6 +1382,8 @@
             }
         },
         {
+            "id": 73,
+            "load": 0,
             "arrival_time": 8301.27,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 8475.25,
@@ -1255,6 +1401,8 @@
             }
         },
         {
+            "id": 74,
+            "load": 0,
             "arrival_time": 8338.21,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9549.2,
@@ -1272,6 +1420,8 @@
             }
         },
         {
+            "id": 75,
+            "load": 0,
             "arrival_time": 8416.46,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10549.5,
@@ -1289,6 +1439,8 @@
             }
         },
         {
+            "id": 76,
+            "load": 0,
             "arrival_time": 8564.6,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10598.4,
@@ -1306,6 +1458,8 @@
             }
         },
         {
+            "id": 77,
+            "load": 0,
             "arrival_time": 8686.67,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10683.2,
@@ -1323,6 +1477,8 @@
             }
         },
         {
+            "id": 78,
+            "load": 0,
             "arrival_time": 8839.03,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10236.1,
@@ -1340,6 +1496,8 @@
             }
         },
         {
+            "id": 79,
+            "load": 0,
             "arrival_time": 8858.94,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 13085.3,
@@ -1357,6 +1515,8 @@
             }
         },
         {
+            "id": 80,
+            "load": 0,
             "arrival_time": 8875.98,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9995.86,
@@ -1374,6 +1534,8 @@
             }
         },
         {
+            "id": 81,
+            "load": 0,
             "arrival_time": 9023.06,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10405.0,
@@ -1391,6 +1553,8 @@
             }
         },
         {
+            "id": 82,
+            "load": 0,
             "arrival_time": 9156.95,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9336.58,
@@ -1408,6 +1572,8 @@
             }
         },
         {
+            "id": 83,
+            "load": 0,
             "arrival_time": 9254.08,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9830.37,
@@ -1425,6 +1591,8 @@
             }
         },
         {
+            "id": 84,
+            "load": 0,
             "arrival_time": 9467.08,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9725.55,
@@ -1442,6 +1610,8 @@
             }
         },
         {
+            "id": 85,
+            "load": 0,
             "arrival_time": 9483.34,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 11389.7,
@@ -1459,6 +1629,8 @@
             }
         },
         {
+            "id": 86,
+            "load": 0,
             "arrival_time": 9508.48,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 12936.6,
@@ -1476,6 +1648,8 @@
             }
         },
         {
+            "id": 87,
+            "load": 0,
             "arrival_time": 9545.23,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10019.2,
@@ -1493,6 +1667,8 @@
             }
         },
         {
+            "id": 88,
+            "load": 0,
             "arrival_time": 9582.19,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 11001.2,
@@ -1510,6 +1686,8 @@
             }
         },
         {
+            "id": 89,
+            "load": 0,
             "arrival_time": 9583.46,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9595.17,
@@ -1527,6 +1705,8 @@
             }
         },
         {
+            "id": 90,
+            "load": 0,
             "arrival_time": 9610.17,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10376.1,
@@ -1544,6 +1724,8 @@
             }
         },
         {
+            "id": 91,
+            "load": 0,
             "arrival_time": 9620.73,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 11465.8,
@@ -1561,6 +1743,8 @@
             }
         },
         {
+            "id": 92,
+            "load": 0,
             "arrival_time": 9743.13,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10864.6,
@@ -1578,6 +1762,8 @@
             }
         },
         {
+            "id": 93,
+            "load": 0,
             "arrival_time": 9874.6,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9947.5,
@@ -1595,6 +1781,8 @@
             }
         },
         {
+            "id": 94,
+            "load": 0,
             "arrival_time": 9891.33,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10091.1,
@@ -1612,6 +1800,8 @@
             }
         },
         {
+            "id": 95,
+            "load": 0,
             "arrival_time": 9894.53,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 9966.48,
@@ -1629,6 +1819,8 @@
             }
         },
         {
+            "id": 96,
+            "load": 0,
             "arrival_time": 10069.0,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 11163.3,
@@ -1646,6 +1838,8 @@
             }
         },
         {
+            "id": 97,
+            "load": 0,
             "arrival_time": 10210.0,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 12602.9,
@@ -1663,6 +1857,8 @@
             }
         },
         {
+            "id": 98,
+            "load": 0,
             "arrival_time": 10323.6,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10855.1,
@@ -1680,6 +1876,8 @@
             }
         },
         {
+            "id": 99,
+            "load": 0,
             "arrival_time": 10379.0,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10727.0,
@@ -1697,6 +1895,8 @@
             }
         },
         {
+            "id": 100,
+            "load": 0,
             "arrival_time": 10380.2,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 11673.3,
@@ -1714,6 +1914,8 @@
             }
         },
         {
+            "id": 101,
+            "load": 0,
             "arrival_time": 10390.7,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 11222.9,
@@ -1731,6 +1933,8 @@
             }
         },
         {
+            "id": 102,
+            "load": 0,
             "arrival_time": 10464.6,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10959.8,
@@ -1748,6 +1952,8 @@
             }
         },
         {
+            "id": 103,
+            "load": 0,
             "arrival_time": 10601.6,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10787.3,
@@ -1765,6 +1971,8 @@
             }
         },
         {
+            "id": 104,
+            "load": 0,
             "arrival_time": 10603.5,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 10929.3,
@@ -1782,6 +1990,8 @@
             }
         },
         {
+            "id": 105,
+            "load": 0,
             "arrival_time": 10637.4,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 12371.3,
@@ -1799,6 +2009,8 @@
             }
         },
         {
+            "id": 106,
+            "load": 0,
             "arrival_time": 10663.8,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 13061.1,
@@ -1816,6 +2028,8 @@
             }
         },
         {
+            "id": 107,
+            "load": 0,
             "arrival_time": 10774.8,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 11201.8,
@@ -1833,6 +2047,8 @@
             }
         },
         {
+            "id": 108,
+            "load": 0,
             "arrival_time": 10830.9,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 12152.4,
@@ -1850,6 +2066,8 @@
             }
         },
         {
+            "id": 109,
+            "load": 0,
             "arrival_time": 10904.3,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 11961.4,
@@ -1867,6 +2085,8 @@
             }
         },
         {
+            "id": 110,
+            "load": 0,
             "arrival_time": 11405.5,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 12470.8,
@@ -1884,6 +2104,8 @@
             }
         },
         {
+            "id": 111,
+            "load": 0,
             "arrival_time": 11481.8,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 12939.5,
@@ -1901,6 +2123,8 @@
             }
         },
         {
+            "id": 112,
+            "load": 0,
             "arrival_time": 11817.0,
             "pickup_service_time": 300.0,
             "pickup_lower_tw": 12495.1,
