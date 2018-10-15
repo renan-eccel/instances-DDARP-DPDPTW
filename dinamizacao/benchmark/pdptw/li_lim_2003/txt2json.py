@@ -77,7 +77,7 @@ def build_instance_dict(directory, subdirectory, filename):
             "delivery_upper_tw": request_dict_raw.get('delivery_upper_tw'),
             "delivery_service_time": request_dict_raw.get(
                 "delivery_service_time"),
-            "load": request_dict_raw.get('load')
+            "load": request_dict_raw.get('pickup_load')
         }
         requests_list.append(request_dict_clean)
 
