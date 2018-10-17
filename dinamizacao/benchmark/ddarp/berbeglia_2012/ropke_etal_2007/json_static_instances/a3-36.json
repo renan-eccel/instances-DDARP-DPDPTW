@@ -1,0 +1,666 @@
+{
+    "static_info": {
+        "name": "a3-36.txt",
+        "number_of_vehicles": 3,
+        "vehicle_capacity": 3,
+        "max_ride_time": 30,
+        "max_route_time": 720,
+        "planing_horizon": 1440,
+        "euclidean_plane_size": "[-10,10] X [-10,10]",
+        "travel_time_between_nodes": "EuclideanDistance",
+        "depot_location": {
+            "x_coord": 0.0,
+            "y_coord": 0.0
+        }
+    },
+    "requests": [
+        {
+            "id": 1,
+            "pickup_location": {
+                "x_coord": 0.564,
+                "y_coord": -6.62
+            },
+            "delivery_location": {
+                "x_coord": -6.846,
+                "y_coord": -5.203
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 141,
+            "delivery_upper_tw": 156,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 2,
+            "pickup_location": {
+                "x_coord": 0.301,
+                "y_coord": 2.093
+            },
+            "delivery_location": {
+                "x_coord": -2.163,
+                "y_coord": 5.316
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 150,
+            "delivery_upper_tw": 165,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 3,
+            "pickup_location": {
+                "x_coord": 5.738,
+                "y_coord": 9.136
+            },
+            "delivery_location": {
+                "x_coord": -7.992,
+                "y_coord": 5.122
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 535,
+            "delivery_upper_tw": 550,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 4,
+            "pickup_location": {
+                "x_coord": -8.276,
+                "y_coord": -9.279
+            },
+            "delivery_location": {
+                "x_coord": 3.556,
+                "y_coord": 1.13
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 592,
+            "delivery_upper_tw": 607,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 5,
+            "pickup_location": {
+                "x_coord": 3.986,
+                "y_coord": -4.319
+            },
+            "delivery_location": {
+                "x_coord": -2.796,
+                "y_coord": -4.174
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 330,
+            "delivery_upper_tw": 345,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 6,
+            "pickup_location": {
+                "x_coord": -9.61,
+                "y_coord": -6.133
+            },
+            "delivery_location": {
+                "x_coord": 5.398,
+                "y_coord": -1.888
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 613,
+            "delivery_upper_tw": 628,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 7,
+            "pickup_location": {
+                "x_coord": 5.322,
+                "y_coord": -9.632
+            },
+            "delivery_location": {
+                "x_coord": 8.676,
+                "y_coord": 8.701
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 159,
+            "delivery_upper_tw": 174,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 8,
+            "pickup_location": {
+                "x_coord": -6.698,
+                "y_coord": 1.31
+            },
+            "delivery_location": {
+                "x_coord": -0.997,
+                "y_coord": 5.395
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 187,
+            "delivery_upper_tw": 202,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 9,
+            "pickup_location": {
+                "x_coord": 4.495,
+                "y_coord": -3.673
+            },
+            "delivery_location": {
+                "x_coord": 1.133,
+                "y_coord": 3.631
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 251,
+            "delivery_upper_tw": 266,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 10,
+            "pickup_location": {
+                "x_coord": -8.808,
+                "y_coord": 9.811
+            },
+            "delivery_location": {
+                "x_coord": 5.355,
+                "y_coord": -8.087
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 259,
+            "delivery_upper_tw": 274,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 11,
+            "pickup_location": {
+                "x_coord": 6.414,
+                "y_coord": 3.69
+            },
+            "delivery_location": {
+                "x_coord": 5.899,
+                "y_coord": -7.904
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 101,
+            "delivery_upper_tw": 116,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 12,
+            "pickup_location": {
+                "x_coord": -7.661,
+                "y_coord": 7.122
+            },
+            "delivery_location": {
+                "x_coord": -7.514,
+                "y_coord": -3.793
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 394,
+            "delivery_upper_tw": 409,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 13,
+            "pickup_location": {
+                "x_coord": 4.336,
+                "y_coord": -0.726
+            },
+            "delivery_location": {
+                "x_coord": -8.472,
+                "y_coord": 4.704
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 52,
+            "delivery_upper_tw": 67,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 14,
+            "pickup_location": {
+                "x_coord": 2.747,
+                "y_coord": -0.768
+            },
+            "delivery_location": {
+                "x_coord": 8.005,
+                "y_coord": -5.942
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 487,
+            "delivery_upper_tw": 502,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 15,
+            "pickup_location": {
+                "x_coord": 3.551,
+                "y_coord": -5.467
+            },
+            "delivery_location": {
+                "x_coord": 8.552,
+                "y_coord": 9.877
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 447,
+            "delivery_upper_tw": 462,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 16,
+            "pickup_location": {
+                "x_coord": 0.787,
+                "y_coord": -2.462
+            },
+            "delivery_location": {
+                "x_coord": -8.931,
+                "y_coord": 0.598
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 143,
+            "delivery_upper_tw": 158,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 17,
+            "pickup_location": {
+                "x_coord": 4.024,
+                "y_coord": 8.881
+            },
+            "delivery_location": {
+                "x_coord": -2.988,
+                "y_coord": -2.286
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 345,
+            "delivery_upper_tw": 360,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 18,
+            "pickup_location": {
+                "x_coord": -9.394,
+                "y_coord": 1.594
+            },
+            "delivery_location": {
+                "x_coord": 0.053,
+                "y_coord": 7.728
+            },
+            "pickup_lower_tw": 0,
+            "pickup_upper_tw": 1440,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 581,
+            "delivery_upper_tw": 596,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 19,
+            "pickup_location": {
+                "x_coord": -7.808,
+                "y_coord": 7.788
+            },
+            "delivery_location": {
+                "x_coord": 2.064,
+                "y_coord": 1.466
+            },
+            "pickup_lower_tw": 223,
+            "pickup_upper_tw": 238,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 20,
+            "pickup_location": {
+                "x_coord": 8.018,
+                "y_coord": -5.228
+            },
+            "delivery_location": {
+                "x_coord": -5.787,
+                "y_coord": -2.75
+            },
+            "pickup_lower_tw": 272,
+            "pickup_upper_tw": 287,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 21,
+            "pickup_location": {
+                "x_coord": 8.172,
+                "y_coord": -3.177
+            },
+            "delivery_location": {
+                "x_coord": -9.199,
+                "y_coord": -7.295
+            },
+            "pickup_lower_tw": 22,
+            "pickup_upper_tw": 37,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 22,
+            "pickup_location": {
+                "x_coord": 9.006,
+                "y_coord": -8.252
+            },
+            "delivery_location": {
+                "x_coord": 3.492,
+                "y_coord": -3.455
+            },
+            "pickup_lower_tw": 134,
+            "pickup_upper_tw": 149,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 23,
+            "pickup_location": {
+                "x_coord": -5.27,
+                "y_coord": 1.102
+            },
+            "delivery_location": {
+                "x_coord": -9.431,
+                "y_coord": -6.389
+            },
+            "pickup_lower_tw": 273,
+            "pickup_upper_tw": 288,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 24,
+            "pickup_location": {
+                "x_coord": -9.79,
+                "y_coord": 8.336
+            },
+            "delivery_location": {
+                "x_coord": -5.783,
+                "y_coord": 1.804
+            },
+            "pickup_lower_tw": 64,
+            "pickup_upper_tw": 79,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 25,
+            "pickup_location": {
+                "x_coord": 4.596,
+                "y_coord": 4.009
+            },
+            "delivery_location": {
+                "x_coord": 3.996,
+                "y_coord": 2.384
+            },
+            "pickup_lower_tw": 180,
+            "pickup_upper_tw": 195,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 26,
+            "pickup_location": {
+                "x_coord": -9.224,
+                "y_coord": -0.324
+            },
+            "delivery_location": {
+                "x_coord": 0.402,
+                "y_coord": -4.452
+            },
+            "pickup_lower_tw": 582,
+            "pickup_upper_tw": 597,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 27,
+            "pickup_location": {
+                "x_coord": 7.946,
+                "y_coord": 8.453
+            },
+            "delivery_location": {
+                "x_coord": -6.279,
+                "y_coord": -5.23
+            },
+            "pickup_lower_tw": 212,
+            "pickup_upper_tw": 227,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 28,
+            "pickup_location": {
+                "x_coord": 9.132,
+                "y_coord": 9.918
+            },
+            "delivery_location": {
+                "x_coord": -6.224,
+                "y_coord": -9.121
+            },
+            "pickup_lower_tw": 340,
+            "pickup_upper_tw": 355,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 29,
+            "pickup_location": {
+                "x_coord": -5.992,
+                "y_coord": 0.89
+            },
+            "delivery_location": {
+                "x_coord": -4.391,
+                "y_coord": 5.11
+            },
+            "pickup_lower_tw": 304,
+            "pickup_upper_tw": 319,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 30,
+            "pickup_location": {
+                "x_coord": 9.172,
+                "y_coord": 3.437
+            },
+            "delivery_location": {
+                "x_coord": 5.32,
+                "y_coord": 7.509
+            },
+            "pickup_lower_tw": 235,
+            "pickup_upper_tw": 250,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 31,
+            "pickup_location": {
+                "x_coord": 5.382,
+                "y_coord": -8.879
+            },
+            "delivery_location": {
+                "x_coord": 2.105,
+                "y_coord": -0.609
+            },
+            "pickup_lower_tw": 148,
+            "pickup_upper_tw": 163,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 32,
+            "pickup_location": {
+                "x_coord": -3.417,
+                "y_coord": 4.891
+            },
+            "delivery_location": {
+                "x_coord": 0.167,
+                "y_coord": 6.258
+            },
+            "pickup_lower_tw": 518,
+            "pickup_upper_tw": 533,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 33,
+            "pickup_location": {
+                "x_coord": 2.544,
+                "y_coord": 9.436
+            },
+            "delivery_location": {
+                "x_coord": 4.205,
+                "y_coord": 0.997
+            },
+            "pickup_lower_tw": 626,
+            "pickup_upper_tw": 641,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 34,
+            "pickup_location": {
+                "x_coord": -4.138,
+                "y_coord": -7.25
+            },
+            "delivery_location": {
+                "x_coord": 0.129,
+                "y_coord": -4.221
+            },
+            "pickup_lower_tw": 363,
+            "pickup_upper_tw": 378,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 35,
+            "pickup_location": {
+                "x_coord": 3.071,
+                "y_coord": 6.617
+            },
+            "delivery_location": {
+                "x_coord": -0.213,
+                "y_coord": -6.04
+            },
+            "pickup_lower_tw": 161,
+            "pickup_upper_tw": 176,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        },
+        {
+            "id": 36,
+            "pickup_location": {
+                "x_coord": -4.162,
+                "y_coord": -9.783
+            },
+            "delivery_location": {
+                "x_coord": -6.867,
+                "y_coord": 9.275
+            },
+            "pickup_lower_tw": 21,
+            "pickup_upper_tw": 36,
+            "pickup_service_time": 3,
+            "delivery_lower_tw": 0,
+            "delivery_upper_tw": 1440,
+            "delivery_service_time": 3,
+            "load": 1
+        }
+    ]
+}
