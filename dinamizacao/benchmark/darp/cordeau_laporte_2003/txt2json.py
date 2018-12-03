@@ -24,7 +24,7 @@ for filename in os.listdir(DIR):
                 "x_coord": float(requests_info[i][1]),
                 "y_coord": float(requests_info[i][2])
             },
-            "delivery_location":{
+            "delivery_location": {
                 "x_coord": float(requests_info[i+n][1]),
                 "y_coord": float(requests_info[i+n][2]),
             },
@@ -46,7 +46,7 @@ for filename in os.listdir(DIR):
             "max_ride_time": maximum_ride_time,
             "max_route_time": max_route_time,
             "planing_horizon": 1440,
-            "euclidean_plane_size": "[-10,10] X [-10,10]",
+            "euclidean_plane_size": "[-10,10] X [10,-10]",
             "travel_time_between_nodes": "EuclideanDistance",
             "depot_location": {
                 "x_coord": float(depot_info[1]),
@@ -56,10 +56,17 @@ for filename in os.listdir(DIR):
         "requests": requests
     }
 
-    to_directory = "./json_instances/"
+    to_directory1 = "./json_instances/"
+    to_directory2 = "../../ddarp/berbeglia_2012/cordeau_laporte_2003/" \
+                    + "json_static_instances/"
     new_filename = filename.rsplit(".")[0] + ".json"
-    if not os.path.exists(to_directory):
-        os.makedirs(to_directory)
+    if not os.path.exists(to_directory1):
+        os.makedirs(to_directory1)
 
-    with open(to_directory + new_filename, 'w') as json_instance_file:
-        json.dump(instance_dict, json_instance_file, indent=4)
+    if not os.path.exists(to_directory2):
+        os.makedirs(to_directory2)
+
+    with open(to_directory1 + new_filename, 'w') as file1, \
+            open(to_directory2 + new_filename, 'w') as file2:
+        json.dump(instance_dict, file1, indent=4)
+        json.dump(instance_dict, file2, indent=4)
