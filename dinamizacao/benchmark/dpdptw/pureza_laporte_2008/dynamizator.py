@@ -37,7 +37,8 @@ def get_travel_time_between(origin, destination):
     destination_y = destination.get('y_coord')
 
     return math.ceil(math.sqrt(abs(destination_x - origin_x)**2
-                        + abs(destination_y - origin_y)**2))
+                               + abs(destination_y - origin_y)**2))
+
 
 static_instances_folder = "./json_static_instances/"
 dynamic_instaces_folder = "./json_dynamic_instances/"
@@ -46,20 +47,23 @@ dynamic_instaces_folder = "./json_dynamic_instances/"
 # pureza_laporte_2005
 dynamized_instances_folders = ["pdp_100/", "pdp_200/", "pdp_400/"]
 
-# pureza_and_laporte_2005 used beta = [0, 100, 200, 300] to create four 
+# pureza_and_laporte_2005 used beta = [0, 100, 200, 300] to create four
 # dynamic instances for each static one.
 beta_values = [0, 100, 200, 300]
 
 for folder in dynamized_instances_folders:
     for filename in os.listdir(static_instances_folder + folder):
         for beta in beta_values:
-            with open(static_instances_folder
-                      + folder
-                      + filename) as instance_file:
+            with open(static_instances_folder + folder + filename) \
+                    as instance_file:
                 instance_dict = json.load(instance_file)
 
-            depot_location = instance_dict.get('static_info') \
-                .get('depot_location')
+            new_filename = filename.rsplit(".")[0] + "_b" + str(beta) + ".json"
+            static_info = instance_dict.get('static_info')
+            static_info['problem'] = 'dpdptw'
+            static_info['benchmark'] = 'pureza_laporte_2008'
+            static_info['instance'] = new_filename.split('.')[0]
+            depot_location = static_info.get('depot_location')
             requests = instance_dict.get('requests')
 
             for request in requests:
@@ -70,7 +74,6 @@ for folder in dynamized_instances_folders:
             if not os.path.exists(dynamic_instaces_folder + folder):
                 os.makedirs(dynamic_instaces_folder + folder)
 
-            new_filename = filename.rsplit(".")[0] + "_b" + str(beta) + ".json"
             with open(dynamic_instaces_folder
                       + folder
                       + new_filename, "w") as json_instance_file:

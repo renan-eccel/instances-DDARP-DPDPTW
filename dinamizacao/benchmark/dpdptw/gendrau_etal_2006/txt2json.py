@@ -52,7 +52,9 @@ def get_requests(directory, filename):
 
 def get_static_info(directory, filename):
     static_dict = {}
-    static_dict["name"] = filename
+    static_dict["problem"] = 'dpdptw'
+    static_dict["benchmark"] = 'gendrau_etal_2006'
+    static_dict["instance"] = filename.split('.')[0]
     static_dict["number_of_vehicles"] = "10 or 20"
     static_dict["vehicles_capacity"] = "inf"
     max_route_time = re.search(r'req_rapide_\d_(\d\d\d)_\d\d.txt', filename)

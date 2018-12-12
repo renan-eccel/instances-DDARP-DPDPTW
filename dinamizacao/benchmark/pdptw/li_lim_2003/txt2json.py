@@ -2,6 +2,7 @@ import os
 import json
 import pandas as pd
 
+
 def structure_segmented_df(df, activity):
     if activity == 'delivery':
         opposite_activity = 'pickup'
@@ -20,15 +21,11 @@ def structure_segmented_df(df, activity):
                opposite_activity + "_index"]
     df.columns = columns
     if activity == 'delivery':
-        df = df.assign(pickup_delivery_index =
-                       lambda x: x.pickup_index.map(str)
-                       + "-"
-                       + x.delivery_id.map(str))
+        df = df.assign(pickup_delivery_index=lambda x: x.pickup_index.map(str)
+                       + "-" + x.delivery_id.map(str))
     else:
-        df = df.assign(pickup_delivery_index =
-                       lambda x: x.pickup_id.map(str)
-                       + "-" +
-                       + x.delivery_index.map(str))
+        df = df.assign(pickup_delivery_index=lambda x: x.pickup_id.map(str)
+                       + "-" + x.delivery_index.map(str))
     return df
 
 
@@ -83,7 +80,9 @@ def build_instance_dict(directory, subdirectory, filename):
 
     output_dict = {
         "static_info": {
-            "name": filename,
+            "problem": 'pdptw',
+            "benchmark": 'li_lim_2003',
+            "instance": filename.split('.')[0],
             "number_of_vehicles": int(first_line[0]),
             "vehicle_capacity": int(first_line[1]),
             "max_route_time": int(depot_info["upper_tw"]),
@@ -95,7 +94,7 @@ def build_instance_dict(directory, subdirectory, filename):
                 "y_coord": int(depot_info["coord_y"])
             }
         },
-        "requests" : requests_list
+        "requests": requests_list
     }
     return output_dict
 
@@ -107,10 +106,18 @@ for subdirectory in os.listdir(DIRECTORY):
         instance_dict = build_instance_dict(DIRECTORY, subdirectory
                                             + "/", filename)
 
-        to_directory = "./json_instances/" + subdirectory + "/"
-        if not os.path.exists(to_directory):
-            os.makedirs(to_directory)
+        to_directory1 = "./json_instances/" + subdirectory + "/"
+        to_directory2 = "../../dpdptw/pureza_laporte_2008/" \
+                        + "json_static_instances/" \
+                        + subdirectory + "/"
+
+        if not os.path.exists(to_directory1):
+            os.makedirs(to_directory1)
+        if not os.path.exists(to_directory2):
+            os.makedirs(to_directory2)
 
         new_filename = filename.rsplit(".")[0] + ".json"
-        with open(to_directory + new_filename, 'w')  as json_instance_file:
-            json.dump(instance_dict, json_instance_file, indent=4)
+        with open(to_directory1 + new_filename, 'w') as file1, \
+                open(to_directory2 + new_filename, 'w') as file2:
+            json.dump(instance_dict, file1, indent=4)
+            json.dump(instance_dict, file2, indent=4)

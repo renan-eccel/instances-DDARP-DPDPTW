@@ -1,11 +1,10 @@
 import os
 import json
 import re
-import pprint
 
 
 def get_requests_info(directory, filename):
-    parameter_list = ["id", "request_time", "pickup_service_time",
+    parameter_list = ["id", "arrival_time", "pickup_service_time",
                       "pickup_location_x_coord", "pickup_location_y_coord",
                       "pickup_lower_tw", "pickup_upper_tw",
                       "delivery_service_time", "delivery_location_x_coord",
@@ -48,11 +47,13 @@ def get_requests_info(directory, filename):
 
 
 def get_static_info(filename):
-    vehicle_set_size_dict = {"100":20, "300":40, "500":60, "1000":80}
+    vehicle_set_size_dict = {"100": 20, "300": 40, "500": 60, "1000": 80}
     number_of_requests = re.search(r'Rnd\d_10h_(\d\d\d\d?)_\d\d\d.txt',
                                    filename).group(1)
     static_dict = {}
-    static_dict["name"] = filename
+    static_dict["problem"] = 'dpdptw'
+    static_dict["benchmark"] = 'mitrovic-minic_etal_2003'
+    static_dict["instance"] = filename.split('.')[0]
     static_dict["number_of_vehicles"] = \
         vehicle_set_size_dict.get(number_of_requests)
     static_dict["vehicles_capacity"] = "inf"
@@ -71,7 +72,7 @@ for subdirectory in os.listdir(from_directory):
         new_filename = filename.rsplit(".")[0] + ".json"
         static_info = get_static_info(filename)
         requests = get_requests_info(from_directory,  subdirectory + "/" +
-                                          filename)
+                                     filename)
         instance_dict = {}
         instance_dict["static_info"] = static_info
         instance_dict["requests"] = requests
@@ -79,6 +80,6 @@ for subdirectory in os.listdir(from_directory):
         if not os.path.exists(to_directory + subdirectory):
             os.makedirs(to_directory + subdirectory)
 
-        with open(to_directory+ subdirectory + "/" + new_filename, 'w') as \
-        json_instance_file:
-            json.dump(instance_dict, json_instance_file, indent=4)
+        with open(to_directory + subdirectory + "/" + new_filename, 'w') as \
+                file:
+            json.dump(instance_dict, file, indent=4)

@@ -40,7 +40,9 @@ for filename in os.listdir(DIR):
 
     instance_dict = {
         "static_info": {
-            "name": filename,
+            "problem": 'darp',
+            "benchmark": 'cordeau_2006',
+            "instance": filename.split('.')[0],
             "number_of_vehicles": number_of_vehicles,
             "vehicle_capacity": vehicle_capacity,
             "max_ride_time": maximum_ride_time,

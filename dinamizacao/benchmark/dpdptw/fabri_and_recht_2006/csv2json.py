@@ -1,6 +1,5 @@
 import json
 import os
-import pprint
 
 
 def get_static_info(directory, subdirectory, filename):
@@ -8,7 +7,9 @@ def get_static_info(directory, subdirectory, filename):
     with open(filepath) as requests_file:
         first_line = requests_file.readline().split(sep=";")
     static_info = {}
-    static_info["name"] = filename
+    static_info['problem'] = 'dpdptw'
+    static_info['benchmark'] = 'fabri_and_rencht_2006'
+    static_info["instance"] = filename.split('.')[0]
     for i in range(4):
         info = int(first_line[i])
         if i == 0:
@@ -37,6 +38,7 @@ def get_coordinates(directory, subdirectory, coord_filename):
         coord_by_id[coord_list[0]] = {"x_coord": int(coord_list[1]),
                                       "y_coord": int(coord_list[2])}
     return coord_by_id
+
 
 def get_requests(coordinates_by_id, directory, subdirectory, filename):
     parameters = ["pickup_location", "delivery_location",
@@ -86,6 +88,5 @@ for subdirectory in os.listdir(from_directory):
             if not os.path.exists(to_directory + subdirectory):
                 os.makedirs(to_directory + subdirectory)
             new_filename = filename.rsplit(".")[0] + ".json"
-            with open(to_directory + subdirectory + new_filename, 'w') as \
-            json_instance_file:
-                json.dump(instance_dict, json_instance_file, indent=4)
+            with open(to_directory + subdirectory + new_filename, 'w') as file:
+                json.dump(instance_dict, file, indent=4)

@@ -21,12 +21,14 @@ def read_until(filename, flag):
 def get_static_info(from_file):
     current_line = from_file.readline()
     line_dict = {}
-    attribute_list = ["name", "number_of_vehicles",
+    line_dict["problem"] = 'dpdtw'
+    line_dict["benchmark"] = 'pankratz_2005'
+    attribute_list = ["instance", "number_of_vehicles",
                       "vehicle_capacity", "max_route_time"]
     for attribute in attribute_list:
         line_info = current_line.split()
-        if attribute == "name":
-            line_dict[attribute] = line_info[1]
+        if attribute == "instance":
+            line_dict[attribute] = line_info[1].split('.')[0]
         elif attribute == "number_of_vehicles":
             line_dict[attribute] = 25
         else:

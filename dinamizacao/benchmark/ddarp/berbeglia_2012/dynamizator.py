@@ -8,6 +8,11 @@ def dynamize_instances(from_dir, to_dir, alpha, beta, start=None, end=None):
     for filename in os.listdir(from_dir):
         with open(from_dir + filename) as from_file:
             instance_dict = json.load(from_file)
+        static_info = instance_dict.get('static_info')
+        static_info['problem'] = 'ddarp'
+        static_info['benchmark'] = 'berbeglia_2012'
+        static_info['instance'] = from_dir.split('/')[1] \
+            + '/' + filename.split('.')[0]
         for request in instance_dict.get("requests"):
             arrival_time = calculate_arrival_time(request, alpha, beta, start,
                                                   end)
@@ -37,7 +42,6 @@ def calculate_arrival_time(request_dict, alpha, beta, start=None, end=None):
                  travel_time_pickup_delivery - pickup_service_time)
     if start and end is not None:
         beta = beta(start, end)
-    print(beta)
     return max(a_last - beta, 0)
 
 
