@@ -2,7 +2,6 @@ import json
 import os
 import pandas as pd
 import re
-import zipfile as zfile
 from progress.bar import Bar
 
 
@@ -63,7 +62,7 @@ def delete_columns(df, columns):
 
 def build_all_dataframes(root, folders):
     df = pd.DataFrame()
-    bar = Bar('Processing', max=11855)
+    bar = Bar('Processing', max=6959)
     for folder in folders:
         for folder, subfolders, filenames in os.walk(root + folder):
             for filename in filenames:
@@ -92,6 +91,24 @@ def build_dataframe(filepath):
                    .assign(problem=instance_static_info.get('problem'))
                    .assign(benchmark=instance_static_info.get('benchmark'))
                    .assign(instance=instance_static_info.get('instance'))
+                   .assign(number_of_vehicles=instance_static_info
+                           .get('number_of_vehicles'))
+                   .assign(vehicle_capacity=instance_static_info
+                           .get('vehicle_capacity'))
+                   .assign(max_ride_time=instance_static_info
+                           .get('max_ride_time'))
+                   .assign(max_route_time=instance_static_info
+                           .get('max_route_time'))
+                   .assign(planing_horizon=instance_static_info
+                           .get('planing_horizon'))
+                   .assign(euclidean_plane=instance_static_info
+                           .get('euclidean_plane_size'))
+                   .assign(travel_time=instance_static_info
+                           .get('travel_time_between_nodes'))
+                   .assign(depot_location_x=instance_static_info
+                           .get('depot_location').get('x_coord'))
+                   .assign(depot_location_y=instance_static_info
+                           .get('depot_location').get('y_coord'))
                    .pipe(disjoint_coordinates, location_columns)
                    .pipe(delete_columns, location_columns)
                    # .pipe(normalize_coords_with_depot, depot_location)
@@ -108,8 +125,7 @@ FOLDERS = ['ddarp/berbeglia_2012/cordeau_laporte_2003/json_dynamic_instances/',
            'dpdptw/gendrau_etal_2006/json_instances/',
            'dpdptw/mitrovic-minic_etal_2003/json_instances/',
            'dpdptw/pankratz_2005/json_instances/',
-           'dpdptw/pankratz_2005/json_instances/',
-           'dpdptw/pureza_laporte_2008/json_instances/']
+           'dpdptw/pureza_laporte_2008/json_dynamic_instances/']
 
 df_requests = build_all_dataframes(ROOT, FOLDERS)
 pd.to_pickle(df_requests, './df_requests.zip')
