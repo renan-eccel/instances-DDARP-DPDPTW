@@ -56,7 +56,7 @@ def get_requests(coordinates_by_id, directory, subdirectory, filename):
         request_values = request_string.strip().split(sep=";")
         request_dict = {}
         request_dict["id"] = count
-        count += count
+        count += 1
 
         for value, parameter in zip(request_values, parameters):
             if parameter in ["pickup_location", "delivery_location"]:
