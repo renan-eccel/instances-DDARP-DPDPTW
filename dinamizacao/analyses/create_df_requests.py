@@ -67,7 +67,7 @@ def build_all_dataframes(root, folders):
         for folder, subfolders, filenames in os.walk(root + folder):
             for filename in filenames:
                 if not subfolders:
-                    # print(folder + '/' + filename)
+                    print(folder + '/' + filename)
                     df = (df.append(build_dataframe(folder + '/' + filename)))
                 else:
                     for subfolder in subfolders:
