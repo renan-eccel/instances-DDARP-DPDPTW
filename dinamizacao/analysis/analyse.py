@@ -1,8 +1,7 @@
 import pandas as pd
-import importlib
 import numpy as np
 import matplotlib.pyplot as plt
-analysis_tools = importlib.import_module('analysis_tools')
+import analysis_tools
 
 df = pd.read_pickle('df_requests.zip')
 
