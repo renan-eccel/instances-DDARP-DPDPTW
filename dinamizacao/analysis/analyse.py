@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import analysis_tools
+import test_poisson
 
 df = pd.read_pickle('df_requests.zip')
 
@@ -52,3 +53,6 @@ plt.savefig('./figures/dynamism_by_benchmark_' + perfect_interarrival_parameter
 hdf_instances.boxplot(column='urgency_mean', by='benchmark', figsize=(20, 10))
 plt.savefig('./figures/urgency_by_benchmark_' + perfect_interarrival_parameter
             + '.png')
+
+# test_poisson for the benchmarks contained in the hdf dataframe
+hdf_poisson_test = hdf.loc[:, ['number_of_requests', 'planing_horizon']]

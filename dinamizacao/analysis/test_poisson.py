@@ -3,8 +3,8 @@ import numpy as np
 import analysis_tools
 
 
-def create_df_poisson(number_of_instances, number_of_requests_desired,
-                      planing_horizon):
+def create_dynamism_sample(number_of_instances, number_of_requests_desired,
+                           planing_horizon):
     '''
     Create a poisson bechmark for the a generic DVRP
     params:
@@ -12,7 +12,7 @@ def create_df_poisson(number_of_instances, number_of_requests_desired,
         planing_horizon
         number_of_instances
     return:
-        pandas.DataFrame with calculated dynamism
+        pandas.Series with calculated dynamism values
     '''
     def build_arrival_time_column(df):
         arrival_time_list = []
@@ -62,4 +62,8 @@ def create_df_poisson(number_of_instances, number_of_requests_desired,
           .loc[lambda x: x.number_of_requests == number_of_requests_desired]
           .pipe(analysis_tools.calculate_dynamism, 'planing_horizon')
     )
-    return df
+    return (
+        df.groupby(['problem', 'benchmark', 'instance'])
+          .dynamism.min()
+          .reset_index(drop=True)
+    )
