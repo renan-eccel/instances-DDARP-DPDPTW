@@ -3,8 +3,9 @@ import numpy as np
 import analysis_tools
 
 
-def create_dynamism_sample(number_of_instances, number_of_requests_desired,
-                           planing_horizon):
+def create_dynamism_sample(number_of_instances,
+                           number_of_requests_desired, planing_horizon,
+                           problem='gdvrp', benchmark='poisson_test'):
     '''
     Create a poisson bechmark for the a generic DVRP
     params:
@@ -43,8 +44,8 @@ def create_dynamism_sample(number_of_instances, number_of_requests_desired,
                               * number_of_requests_desired)
     )
     data = {
-        'problem': 'gdvrp',
-        'benchmark': 'poisson_test',
+        'problem': problem,
+        'benchmark': benchmark,
         'instance': instance_list,
         'id': id_list,
         'planing_horizon': planing_horizon,
@@ -54,7 +55,6 @@ def create_dynamism_sample(number_of_instances, number_of_requests_desired,
     df = (
         pd.DataFrame(data)
           .pipe(build_arrival_time_column)
-
           .loc[lambda x: x.arrival_time <= planing_horizon]
           .assign(number_of_requests=lambda x:
                   x.groupby(['problem', 'benchmark', 'instance'],
@@ -62,8 +62,4 @@ def create_dynamism_sample(number_of_instances, number_of_requests_desired,
           .loc[lambda x: x.number_of_requests == number_of_requests_desired]
           .pipe(analysis_tools.calculate_dynamism, 'planing_horizon')
     )
-    return (
-        df.groupby(['problem', 'benchmark', 'instance'])
-          .dynamism.min()
-          .reset_index(drop=True)
-    )
+    return (df)

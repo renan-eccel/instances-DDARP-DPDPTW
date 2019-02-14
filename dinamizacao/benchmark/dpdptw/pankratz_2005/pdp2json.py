@@ -21,7 +21,7 @@ def read_until(filename, flag):
 def get_static_info(from_file):
     current_line = from_file.readline()
     line_dict = {}
-    line_dict["problem"] = 'dpdtw'
+    line_dict["problem"] = 'dpdptw'
     line_dict["benchmark"] = 'pankratz_2005'
     attribute_list = ["instance", "number_of_vehicles",
                       "vehicle_capacity", "max_route_time"]
