@@ -39,6 +39,24 @@ def histplot_by_benchmark(hdf, column, figsize,
     plt.close()
 
 
+def scatterplot_by_benchmark(hdf, x_column, y_column, figsize,
+                             perfect_interarrival_parameter):
+    f, axes = plt.subplots(3, 2, figsize=figsize)
+    for i in range(3):
+        for j in range(2):
+            benchmark = hdf.index.levels[1][2*i + j]
+            ax = axes[i, j]
+            ax.set_title(benchmark)
+            (hdf.reset_index().loc[lambda x: x.benchmark == benchmark]
+             .plot(x=x_column, y=y_column, kind='scatter',
+                   ax=ax))
+
+    plt.savefig('./figures/' + x_column + '_x_' + y_column + '_scatterplot_'
+                + perfect_interarrival_parameter
+                + '.png')
+    plt.close()
+
+
 def plot_figures(hdf, figsize, perfect_interarrival_parameter):
 
     # create an histogram for each bechmark showing the distribution of request
@@ -90,7 +108,7 @@ def build_poisson_generated_scenarios(hdf, perfect_interarrival_parameter):
         for values in parameters.itertuples():
             df_poisson = df_poisson.append(
                 test_poisson.create_dynamism_sample(
-                    20,
+                    10**3,
                     int(values.number_of_requests),
                     getattr(values, perfect_interarrival_parameter),
                     values.Index[0],
@@ -98,6 +116,22 @@ def build_poisson_generated_scenarios(hdf, perfect_interarrival_parameter):
                 ).assign(statistic=function)
             )
     return df_poisson
+
+
+def create_and_plot_poisson_scenarios(hdf, perfect_interarrival_parameter):
+    hdf_poisson = (
+        build_poisson_generated_scenarios(hdf, perfect_interarrival_parameter)
+        .reset_index()
+        .set_index(['problem', 'benchmark', 'statistic', 'instance', 'id'])
+    )
+    # plot dynamism of hdf_poisson instances
+    hdf_poisson.boxplot(column='dynamism',
+                        by=['benchmark', 'statistic'],
+                        figsize=(50, 7)).set_ylim(0, 1)
+    plt.savefig('./figures/dynamism_boxplot_benchmark_and_statistic_'
+                + perfect_interarrival_parameter
+                + '.png')
+    plt.close()
 
 
 df = pd.read_pickle('df_requests.zip')
@@ -123,8 +157,7 @@ hdf = calculate_dynamism_and_urgency(df, perfect_interarrival_parameter)
 
 plot_figures(hdf, (15, 7), perfect_interarrival_parameter)
 
-df_poisson = build_poisson_generated_scenarios(hdf,
-                                               perfect_interarrival_parameter)
+create_and_plot_poisson_scenarios(hdf, perfect_interarrival_parameter)
 
-
-
+scatterplot_by_benchmark(hdf, 'dynamism', 'urgency', (15, 15),
+                         perfect_interarrival_parameter)
