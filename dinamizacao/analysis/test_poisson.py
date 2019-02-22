@@ -1,6 +1,50 @@
 import pandas as pd
 import numpy as np
 import analysis_tools
+import matplotlib.pyplot as plt
+
+
+def build_poisson_generated_scenarios(hdf, perfect_interarrival_parameter):
+    def get_parametes_values(hdf, perfect_interarrival_parameter, func):
+        parameters = (
+            getattr(
+                hdf.loc[:, [perfect_interarrival_parameter,
+                            'number_of_requests']]
+                .groupby(['problem', 'benchmark']), func)()
+        )
+        return parameters
+    functions = ['min', 'mean', 'max']
+    df_poisson = pd.DataFrame()
+    for function in functions:
+        parameters = get_parametes_values(hdf, perfect_interarrival_parameter,
+                                          function)
+        for values in parameters.itertuples():
+            df_poisson = df_poisson.append(
+                create_dynamism_sample(
+                    10**3,
+                    int(values.number_of_requests),
+                    getattr(values, perfect_interarrival_parameter),
+                    values.Index[0],
+                    values.Index[1]
+                ).assign(statistic=function)
+            )
+    return df_poisson
+
+
+def create_and_plot_poisson_scenarios(hdf, perfect_interarrival_parameter):
+    hdf_poisson = (
+        build_poisson_generated_scenarios(hdf, perfect_interarrival_parameter)
+        .reset_index()
+        .set_index(['problem', 'benchmark', 'statistic', 'instance', 'id'])
+    )
+    # plot dynamism of hdf_poisson instances
+    hdf_poisson.boxplot(column='dynamism',
+                        by=['benchmark', 'statistic'],
+                        figsize=(50, 7)).set_ylim(0, 1)
+    plt.savefig('./figures/dynamism_boxplot_benchmark_and_statistic_'
+                + perfect_interarrival_parameter
+                + '.png')
+    plt.close()
 
 
 def create_dynamism_sample(number_of_instances,
