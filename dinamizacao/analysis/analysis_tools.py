@@ -119,3 +119,19 @@ def calculate_urgency(df):
         urgency = pickup_uppper_tw - arrival_time
     '''
     return df.assign(urgency=lambda x: x.pickup_upper_tw - x.arrival_time)
+
+
+def calculate_requests_per_vehicle(df):
+    '''
+    Calculate the scale of each request using the following equation:
+        scale = number_of_requests / number_of_vehicles
+    '''
+    df_out = (
+        df.copy()
+        .assign(number_of_vehicles=lambda x:
+                pd.to_numeric(x.number_of_vehicles.astype(str).str
+                              .extract(r'^(\d*)', expand=False)))
+        .assign(requests_per_vehicle=lambda x: x.number_of_requests
+                / x.number_of_vehicles)
+    )
+    return df_out
