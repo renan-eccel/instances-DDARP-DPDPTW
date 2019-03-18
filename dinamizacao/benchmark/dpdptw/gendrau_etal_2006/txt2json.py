@@ -40,6 +40,10 @@ def get_requests(directory, filename):
                     coord = re.search(r'._(\w_coord)', parameter)
                     coord = coord.group(1)
                     delivery_location[coord] = value
+
+            elif '_time' or '_tw' in parameter:
+                # transform time from seconds to minutes
+                request_dict[parameter] = value / 60
             else:
                 request_dict[parameter] = value
 
@@ -59,8 +63,8 @@ def get_static_info(directory, filename):
     static_dict["vehicles_capacity"] = "inf"
     max_route_time = re.search(r'req_rapide_\d_(\d\d\d)_\d\d.txt', filename)
     max_route_time = max_route_time.group(1)
-    static_dict["max_route_time"] = int(max_route_time) * 60
-    static_dict["planing_horizon"] = int(max_route_time) * 60
+    static_dict["max_route_time"] = int(max_route_time)
+    static_dict["planing_horizon"] = int(max_route_time)
     static_dict["euclidean_plane_size"] = "[0,5] X [0,5]"
     static_dict["travel_time_between_nodes"] = "EuclideanDistance / 30"
     static_dict["depot_location"] = {"x_coord": 2.0, "y_coord": 2.5}

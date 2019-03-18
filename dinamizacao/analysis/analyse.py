@@ -4,6 +4,7 @@ import analysis_tools
 import test_poisson
 import plots
 import matplotlib.pyplot as plt
+import importlib
 import seaborn as sns
 sns.set(style='ticks')
 
@@ -39,9 +40,10 @@ def create_citation_column(df):
 
 
 def create_figures(hdf, columns_to_group, folder,
-                   perfect_interarrival_parameter):
-    test_poisson.create_and_plot_poisson_scenarios(
-        hdf, perfect_interarrival_parameter)
+                   perfect_interarrival_parameter, save_test):
+    if save_test:
+        test_poisson.create_and_plot_poisson_scenarios(
+            hdf, perfect_interarrival_parameter)
     plots.plot_figures(hdf, columns_to_group, folder,
                        perfect_interarrival_parameter)
 
@@ -49,15 +51,13 @@ def create_figures(hdf, columns_to_group, folder,
 if __name__ == '__main__':
     # parameters
     create_and_save_plots = True
+    save_poisson_test = False
     perfect_interarrival_parameter = 'planing_horizon'
     folder = './figures/'
 
     df = pd.read_pickle('df_requests.zip')
     columns_to_group = ['problem', 'benchmark', 'instance']
-    columns_plt = {'dynamism': 'Dinamismo',
-                   'urgency': 'Urgência (min)',
-                   'interarrival': 'Intervalo entre chegadas (min)',
-                   'arrival_time': 'Instante de chegada (min)'}
+
     # fix inf values represented as NaN
     df.vehicle_capacity.fillna(np.inf, inplace=True)
     df.max_ride_time.fillna(np.inf, inplace=True)
@@ -79,4 +79,4 @@ if __name__ == '__main__':
     )
     if create_and_save_plots:
         create_figures(hdf, columns_to_group, folder,
-                       perfect_interarrival_parameter)
+                       perfect_interarrival_parameter, save_poisson_test)
