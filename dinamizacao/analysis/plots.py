@@ -72,6 +72,15 @@ def scatterplot_by_benchmark(hdf, x_column, y_column, x_column_plt,
     plt.close()
 
 
+def jointplot(hdf, x_column, y_column, x_column_plt, y_column_plt, folder,
+              perfect_interarrival_parameter):
+    g = sns.jointplot(x=x_column, y=y_column, data=hdf)
+    g.set_xlabel(x_column_plt)
+    g.set_ylabel(y_column_plt)
+    plt.tight_layout()
+    return (g)
+
+
 def pairplot_by_benchmark(hdf, columns, columns_plt, folder,
                           perfect_interarrival_parameter):
     hdf_metrics = hdf.loc[:, columns]
@@ -102,6 +111,21 @@ def boxplot_by_benchmark(hdf, column, column_plt, folder,
     plt.close()
 
 
+def scatterplot(hdf, benchmark, x_column, y_column, color, x_column_plt,
+                y_column_plt, color_plt, folder,
+                perfect_interarrival_parameter):
+    hdf_benchmark = hdf.filter(like=benchmark, axis=0)
+    g = sns.scatterplot(x=x_column, y=y_column, hue=color, data=hdf_benchmark)
+    g.set_xlabel(x_column_plt)
+    g.set_ylabel(y_column_plt)
+    g.set_label(color_plt)
+    plt.tight_layout()
+    plt.savefig(folder + 'scatterplot_' + x_column + '_x_' + y_column + '_'
+                + benchmark + '_' + perfect_interarrival_parameter
+                + '.png')
+    plt.close()
+
+
 def plot_figures(hdf, columns_to_group, folder,
                  perfect_interarrival_parameter):
     dynamisnm_plt = 'Dinamismo'
@@ -109,6 +133,8 @@ def plot_figures(hdf, columns_to_group, folder,
     urgency_mean_plt = 'Urgência média (min)'
     interarrival_plt = 'Intervalo entre chegadas (min)'
     arrival_time_plt = 'Instante de chegada (min)'
+    pickup_upper_tw_plt = 'Limite superior da janela de tempo de coleta (min)'
+    pickup_lower_tw_plt = 'Limite inferior da janela de tempo de coleta (min)'
     # requests_per_vehicles_plt = 'N. de pedidos por veículos'
 
     # create an histogram for each bechmark showing the distribution of request
@@ -160,11 +186,46 @@ def plot_figures(hdf, columns_to_group, folder,
     column_hist(hdf, 'urgency', urgency_plt, 'berbeglia', folder,
                 perfect_interarrival_parameter)
 
+    # create an pickup_upper_tw x arrival_time for berbelgia
+    scatterplot(hdf, 'berbeglia', 'pickup_upper_tw', 'arrival_time', 'urgency',
+                pickup_upper_tw_plt, arrival_time_plt, urgency_plt, folder,
+                perfect_interarrival_parameter)
+
+    # create an arrival_time histogram for berbeglia
+    column_hist(hdf, 'arrival_time', arrival_time_plt, 'berbeglia', folder,
+                perfect_interarrival_parameter)
+
+    # create an urgency histogram for berbeglia
+    column_hist(hdf, 'urgency', urgency_plt, 'berbeglia', folder,
+                perfect_interarrival_parameter)
+
+    # create an pickup_upper_tw x arrival_time for pureza
+    scatterplot(hdf, 'pureza', 'pickup_upper_tw', 'arrival_time', 'urgency',
+                pickup_upper_tw_plt, arrival_time_plt, urgency_plt, folder,
+                perfect_interarrival_parameter)
+
+    # create an pickup_lower_tw x arrival_time for pureza
+    scatterplot(hdf, 'pureza', 'pickup_lower_tw', 'arrival_time', 'urgency',
+                pickup_lower_tw_plt, arrival_time_plt, urgency_plt, folder,
+                perfect_interarrival_parameter)
+
+    # create an arrival_time histogram for pureza
+    column_hist(hdf, 'arrival_time', arrival_time_plt, 'pureza', folder,
+                perfect_interarrival_parameter)
+
+    # create an urgency histogram for pureza
+    column_hist(hdf, 'urgency', urgency_plt, 'pureza', folder,
+                perfect_interarrival_parameter)
+
+    # create a pickup_lower_tw histogram for pureza
+    column_hist(hdf, 'pickup_lower_tw', pickup_lower_tw_plt, 'pureza', folder,
+                perfect_interarrival_parameter)
+
     # create an arrival_time histogram for fabri_and_recht
     column_hist(hdf, 'arrival_time', arrival_time_plt, 'fabri', folder,
                 perfect_interarrival_parameter)
 
-    # create an urgency histogram for berbeglia
+    # create an urgency histogram for fabri
     column_hist(hdf, 'urgency', arrival_time_plt, 'fabri', folder,
                 perfect_interarrival_parameter)
 

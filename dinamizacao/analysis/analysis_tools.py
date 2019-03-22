@@ -118,7 +118,10 @@ def calculate_urgency(df):
     Calculate the urgency of each request using the following equation:
         urgency = pickup_uppper_tw - arrival_time
     '''
-    return df.assign(urgency=lambda x: x.pickup_upper_tw - x.arrival_time)
+    return df.assign(urgency=lambda x:
+                     x.loc[:, ['pickup_upper_tw',
+                               'delivery_upper_tw']].min(axis=1)
+                     - x.arrival_time)
 
 
 def calculate_requests_per_vehicle(df):
