@@ -62,7 +62,7 @@ def delete_columns(df, columns):
 
 def build_all_dataframes(root, folders):
     df = pd.DataFrame()
-    bar = Bar('Processing', max=6959)
+    bar = Bar('Processing', max=1919)
     for folder in folders:
         for folder, subfolders, filenames in os.walk(root + folder):
             for filename in filenames:
@@ -122,7 +122,7 @@ ROOT = '../benchmark/'
 FOLDERS = ['ddarp/berbeglia_2012/cordeau_laporte_2003/json_dynamic_instances/',
            'ddarp/berbeglia_2012/ropke_etal_2007/json_dynamic_instances/',
            'dpdptw/fabri_and_recht_2006/json_instances/',
-           'dpdptw/gendrau_etal_2006/json_instances/',
+           'dpdptw/gendreau_etal_2006/json_instances/',
            'dpdptw/mitrovic-minic_etal_2003/json_instances/',
            'dpdptw/pankratz_2005/json_instances/',
            'dpdptw/pureza_laporte_2008/json_dynamic_instances/']

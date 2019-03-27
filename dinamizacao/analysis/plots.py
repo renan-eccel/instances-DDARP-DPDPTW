@@ -4,12 +4,8 @@ import numpy as np
 sns.set_style('ticks')
 
 
-def frequency_hist(series, xlim=None):
-    weights = np.ones_like(series) / len(series)
-    ax = series.hist(weights=weights)
-    ax.set_ylabel('Frequência')
-    ax.set_xlim(xlim)
-    return ax
+def weighted_hist(x, weights, **kwargs):
+    plt.hist(x, weights=weights, **kwargs)
 
 
 def column_hist(hdf, column, column_plt, benchmark, folder,
@@ -17,11 +13,12 @@ def column_hist(hdf, column, column_plt, benchmark, folder,
     upper_xlim = (
         hdf[perfect_interarrival_parameter].filter(like=benchmark).max()
     )
-    ax = (
-        hdf[column].filter(like=benchmark)
-                   .pipe(frequency_hist, (0, upper_xlim))
-    )
-    ax.set_xlabel(column_plt)
+    series = hdf[column].filter(like=benchmark)
+    weights = np.ones_like(series) / len(series)
+    weighted_hist(series, weights)
+    plt.ylabel('Frequência')
+    plt.xlim((0, upper_xlim))
+    plt.xlabel(column_plt)
     plt.tight_layout()
     plt.savefig(folder + 'hist_' + column + '_' + benchmark + '_'
                 + perfect_interarrival_parameter
@@ -37,13 +34,26 @@ def histplot_by_benchmark(hdf, column, column_plt, folder,
         for i in range(len(axes)):
             axes[i].set_xlim(0, x_upper_lims[i])
 
-    hdf_notnull = hdf.dropna(subset=[column])
+    def create_weight_column(hdf):
+        hdf_out = (
+            hdf.copy()
+               .assign(weight=lambda x: 1 / x.reset_index()
+                       .groupby(['problem', 'benchmark'])
+                       .id.count())
+        )
+        return hdf_out
+
+    hdf_notnull = (
+        hdf.dropna(subset=[column])
+           .pipe(create_weight_column)
+    )
     g = sns.FacetGrid(hdf_notnull, col='citation', hue='citation',
                       sharey=False, sharex=False, palette='colorblind',
                       despine=False, col_wrap=3, height=2.5, aspect=1.5)
-    g.map(sns.distplot, column,  fit=fit, kde=False)
+    g.map(weighted_hist, column, 'weight', bins=25)
     g.set_titles('{col_name}')
     g.set_xlabels(column_plt)
+    g.set_ylabels('Frequência')
     axes = g.axes
     if upper_xlims is not None:
         set_xlim_for_axes(axes, upper_xlims)
@@ -133,17 +143,33 @@ def plot_figures(hdf, columns_to_group, folder,
     urgency_mean_plt = 'Urgência média (min)'
     interarrival_plt = 'Intervalo entre chegadas (min)'
     arrival_time_plt = 'Instante de chegada (min)'
-    pickup_upper_tw_plt = 'Limite superior da janela de tempo de coleta (min)'
-    pickup_lower_tw_plt = 'Limite inferior da janela de tempo de coleta (min)'
+    pickup_upper_tw_plt = ('Limite superior da janela\n'
+                           + 'de tempo de coleta (min)')
+    pickup_lower_tw_plt = ('Limite inferior da janela\n'
+                           + 'de tempo de coleta (min)')
     # requests_per_vehicles_plt = 'N. de pedidos por veículos'
 
     # create an histogram for each bechmark showing the distribution of request
     # numbers over the planing_horizon
-    upper_xlims = list(hdf.groupby(['problem', 'benchmark']).planing_horizon
-                       .max())
+    # upper_xlims = list(hdf.groupby(['problem', 'benchmark']).planing_horizon
+    #                   .max())
     histplot_by_benchmark(hdf, 'arrival_time', arrival_time_plt, folder,
-                          perfect_interarrival_parameter,
-                          upper_xlims=upper_xlims)
+                          perfect_interarrival_parameter)
+
+    # create an histogram for each benchmark showing the distribution of
+    # pickup_lower_tw
+    histplot_by_benchmark(hdf, 'pickup_lower_tw', pickup_lower_tw_plt,
+                          folder, perfect_interarrival_parameter)
+
+    # create an histogram for each benchmark showing the distribution of
+    # pickup_lower_tw
+    histplot_by_benchmark(hdf, 'pickup_upper_tw', pickup_upper_tw_plt,
+                          folder, perfect_interarrival_parameter)
+
+    # create an histogram for each benchmark showing the distribution of
+    # urgency values
+    histplot_by_benchmark(hdf, 'urgency', urgency_plt, folder,
+                          perfect_interarrival_parameter)
 
     # create an histogram for each benchmark showing the distribution of
     # interarrivals
@@ -178,55 +204,34 @@ def plot_figures(hdf, columns_to_group, folder,
                              dynamisnm_plt, urgency_plt, folder,
                              perfect_interarrival_parameter)
 
-    # create an arrival_time histogram for berbeglia
-    column_hist(hdf, 'arrival_time', arrival_time_plt, 'berbeglia', folder,
-                perfect_interarrival_parameter)
-
-    # create an urgency histogram for berbeglia
-    column_hist(hdf, 'urgency', urgency_plt, 'berbeglia', folder,
-                perfect_interarrival_parameter)
-
-    # create an pickup_upper_tw x arrival_time for berbelgia
+    # create a pickup_upper_tw x arrival_time for berbelgia
     scatterplot(hdf, 'berbeglia', 'pickup_upper_tw', 'arrival_time', 'urgency',
                 pickup_upper_tw_plt, arrival_time_plt, urgency_plt, folder,
                 perfect_interarrival_parameter)
 
-    # create an arrival_time histogram for berbeglia
-    column_hist(hdf, 'arrival_time', arrival_time_plt, 'berbeglia', folder,
-                perfect_interarrival_parameter)
-
-    # create an urgency histogram for berbeglia
-    column_hist(hdf, 'urgency', urgency_plt, 'berbeglia', folder,
-                perfect_interarrival_parameter)
-
-    # create an pickup_upper_tw x arrival_time for pureza
-    scatterplot(hdf, 'pureza', 'pickup_upper_tw', 'arrival_time', 'urgency',
-                pickup_upper_tw_plt, arrival_time_plt, urgency_plt, folder,
-                perfect_interarrival_parameter)
-
-    # create an pickup_lower_tw x arrival_time for pureza
+    # create a pickup_lower_tw x arrival_time for pureza
     scatterplot(hdf, 'pureza', 'pickup_lower_tw', 'arrival_time', 'urgency',
                 pickup_lower_tw_plt, arrival_time_plt, urgency_plt, folder,
                 perfect_interarrival_parameter)
 
-    # create an arrival_time histogram for pureza
-    column_hist(hdf, 'arrival_time', arrival_time_plt, 'pureza', folder,
+    # create a pickup_upper_tw x arrival_time for pankratz
+    scatterplot(hdf, 'pankratz', 'pickup_upper_tw', 'arrival_time', 'urgency',
+                pickup_upper_tw_plt, arrival_time_plt, urgency_plt, folder,
                 perfect_interarrival_parameter)
 
-    # create an urgency histogram for pureza
-    column_hist(hdf, 'urgency', urgency_plt, 'pureza', folder,
+    # create a pickup_lower_tw x arrival_time for pankratz
+    scatterplot(hdf, 'pankratz', 'pickup_lower_tw', 'arrival_time', 'urgency',
+                pickup_lower_tw_plt, arrival_time_plt, urgency_plt, folder,
                 perfect_interarrival_parameter)
 
-    # create a pickup_lower_tw histogram for pureza
-    column_hist(hdf, 'pickup_lower_tw', pickup_lower_tw_plt, 'pureza', folder,
+    # create a pickup_lower_tw x arrival_time for pankratz
+    scatterplot(hdf, 'fabri', 'pickup_lower_tw', 'arrival_time', 'urgency',
+                pickup_lower_tw_plt, arrival_time_plt, urgency_plt, folder,
                 perfect_interarrival_parameter)
 
-    # create an arrival_time histogram for fabri_and_recht
-    column_hist(hdf, 'arrival_time', arrival_time_plt, 'fabri', folder,
-                perfect_interarrival_parameter)
-
-    # create an urgency histogram for fabri
-    column_hist(hdf, 'urgency', arrival_time_plt, 'fabri', folder,
+    # create a pickup_lower_tw x arrival_time for pankratz
+    scatterplot(hdf, 'gendreau', 'pickup_lower_tw', 'arrival_time', 'urgency',
+                pickup_lower_tw_plt, arrival_time_plt, urgency_plt, folder,
                 perfect_interarrival_parameter)
 
     # create pairplot with dynamism x urgency x scale for each benchmark

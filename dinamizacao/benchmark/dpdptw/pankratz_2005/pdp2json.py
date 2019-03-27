@@ -104,7 +104,9 @@ def transform_instance(ROOT, from_directory, filename):
     with open(to_directory + new_filename, 'w') as json_instance_file:
         json.dump(instance_dict, json_instance_file, indent=4)
 
+
 ROOT = "./DPDPTW-Instances/"
 for directory in os.listdir(ROOT):
-    for filename in os.listdir(ROOT + directory + "/"):
-        transform_instance(ROOT, directory, filename)
+    if directory == 'exante0':
+        for filename in os.listdir(ROOT + directory + "/"):
+            transform_instance(ROOT, directory, filename)
