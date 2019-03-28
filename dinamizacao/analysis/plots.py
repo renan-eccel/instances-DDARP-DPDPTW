@@ -104,8 +104,7 @@ def pairplot_by_benchmark(hdf, columns, columns_plt, folder,
         plt.close()
 
 
-def boxplot_by_benchmark(hdf, column, column_plt, folder,
-                         perfect_interarrival_parameter):
+def boxplot_by_benchmark(hdf, column, column_plt):
     figsize = (10, 4)
     fig, ax = plt.subplots(figsize=figsize)
     sns.boxplot(x=column, y='citation', data=hdf, ax=ax,
@@ -114,6 +113,11 @@ def boxplot_by_benchmark(hdf, column, column_plt, folder,
         ax.set_xlim(0, 1)
     ax.set_ylabel('')
     ax.set_xlabel(column_plt)
+
+
+def boxplot_by_benchmark_save(hdf, column, column_plt, folder,
+                              perfect_interarrival_parameter):
+    boxplot_by_benchmark(hdf, column, column_plt)
     plt.tight_layout()
     plt.savefig(folder + 'boxplot_' + column + '_by_benchmark_'
                 + perfect_interarrival_parameter
@@ -185,12 +189,12 @@ def plot_figures(hdf, columns_to_group, folder,
     )
 
     # create a boxplot graph for the dynamism in each benchmark and save it
-    boxplot_by_benchmark(hdf_instances, 'dynamism', dynamisnm_plt, folder,
-                         perfect_interarrival_parameter)
+    boxplot_by_benchmark_save(hdf_instances, 'dynamism', dynamisnm_plt,
+                              folder, perfect_interarrival_parameter)
 
     # create a boxplot for the urgency in each benchmark and save it
-    boxplot_by_benchmark(hdf_instances, 'urgency_mean', urgency_plt, folder,
-                         perfect_interarrival_parameter)
+    boxplot_by_benchmark_save(hdf_instances, 'urgency_mean', urgency_plt,
+                              folder, perfect_interarrival_parameter)
 
     # create scatterplts with dynamism x urgency values for each benchmark
     # each point represents an instance
@@ -219,18 +223,18 @@ def plot_figures(hdf, columns_to_group, folder,
                 pickup_upper_tw_plt, arrival_time_plt, urgency_plt, folder,
                 perfect_interarrival_parameter)
 
-    # create a pickup_lower_tw x arrival_time for pankratz
-    scatterplot(hdf, 'pankratz', 'pickup_lower_tw', 'arrival_time', 'urgency',
-                pickup_lower_tw_plt, arrival_time_plt, urgency_plt, folder,
-                perfect_interarrival_parameter)
-
-    # create a pickup_lower_tw x arrival_time for pankratz
+    # create a pickup_lower_tw x arrival_time for fabri
     scatterplot(hdf, 'fabri', 'pickup_lower_tw', 'arrival_time', 'urgency',
                 pickup_lower_tw_plt, arrival_time_plt, urgency_plt, folder,
                 perfect_interarrival_parameter)
 
-    # create a pickup_lower_tw x arrival_time for pankratz
+    # create a pickup_lower_tw x arrival_time for gendreau
     scatterplot(hdf, 'gendreau', 'pickup_lower_tw', 'arrival_time', 'urgency',
+                pickup_lower_tw_plt, arrival_time_plt, urgency_plt, folder,
+                perfect_interarrival_parameter)
+
+    # create a pickup_lower_tw x arrival_time for pankratz
+    scatterplot(hdf, 'mitrovic', 'pickup_lower_tw', 'arrival_time', 'urgency',
                 pickup_lower_tw_plt, arrival_time_plt, urgency_plt, folder,
                 perfect_interarrival_parameter)
 
