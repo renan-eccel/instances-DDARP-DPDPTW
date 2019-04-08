@@ -19,6 +19,14 @@ def calculate_dynamism_urgency_and_scale(df, perfect_interarrival_parameter):
                 x.groupby(columns_to_group).urgency.mean())
         .assign(urgency_std=lambda x:
                 x.groupby(columns_to_group).urgency.std())
+        .assign(inter_mean=lambda x:
+                x.groupby(columns_to_group).interarrival.mean())
+        .assign(inter_mean_norm=lambda x:
+                x.groupby(columns_to_group).interarrival.mean()
+                / x.groupby(columns_to_group).planing_horizon.max())
+        .assign(inter_std_norm=lambda x:
+                x.groupby(columns_to_group).interarrival.std()
+                / x.groupby(columns_to_group).planing_horizon.max())
         .assign(lam_poisson=lambda x:
                 (x.number_of_requests / x.planing_horizon)
                 .groupby(columns_to_group).max())

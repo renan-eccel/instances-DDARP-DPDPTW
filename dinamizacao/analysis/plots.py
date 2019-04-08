@@ -27,8 +27,8 @@ def column_hist(hdf, column, column_plt, benchmark, folder,
 
 
 def histplot_by_benchmark(hdf, column, column_plt, folder,
-                          perfect_interarrival_parameter, fit=None,
-                          upper_xlims=None):
+                          perfect_interarrival_parameter,
+                          upper_xlims=None, sharex=False):
 
     def set_xlim_for_axes(axes, x_upper_lims):
         for i in range(len(axes)):
@@ -48,7 +48,7 @@ def histplot_by_benchmark(hdf, column, column_plt, folder,
            .pipe(create_weight_column)
     )
     g = sns.FacetGrid(hdf_notnull, col='citation', hue='citation',
-                      sharey=False, sharex=False, palette='colorblind',
+                      sharey=False, sharex=sharex, palette='colorblind',
                       despine=False, col_wrap=3, height=2.5, aspect=1.5)
     g.map(weighted_hist, column, 'weight', bins=25)
     g.set_titles('{col_name}')
@@ -151,6 +151,8 @@ def plot_figures(hdf, columns_to_group, folder,
                            + 'de tempo de coleta (min)')
     pickup_lower_tw_plt = ('Limite inferior da janela\n'
                            + 'de tempo de coleta (min)')
+    inter_mean_plt = 'Intervalo médio entre\n' + 'chegadas de pedidos (min)'
+    inter_mean_norm_plt = inter_mean_plt + ' normalizada'
     # requests_per_vehicles_plt = 'N. de pedidos por veículos'
 
     # create an histogram for each bechmark showing the distribution of request
@@ -177,14 +179,14 @@ def plot_figures(hdf, columns_to_group, folder,
 
     # create an histogram for each benchmark showing the distribution of
     # interarrivals
-    from scipy.stats import expon
     histplot_by_benchmark(hdf, 'interarrival', interarrival_plt, folder,
-                          perfect_interarrival_parameter, fit=expon)
+                          perfect_interarrival_parameter)
 
     # create a dataframe to analyse dynamism and urgency measures for each
     # instance
     hdf_instances = (
-        hdf.loc[:, ['citation', 'dynamism', 'urgency_mean', 'urgency_std']]
+        hdf.loc[:, ['citation', 'dynamism', 'urgency_mean', 'urgency_std',
+                    'inter_mean_norm', 'planing_horizon']]
            .groupby(columns_to_group + ['citation']).max().reset_index()
     )
 
@@ -195,6 +197,20 @@ def plot_figures(hdf, columns_to_group, folder,
     # create a boxplot for the urgency in each benchmark and save it
     boxplot_by_benchmark_save(hdf_instances, 'urgency_mean', urgency_plt,
                               folder, perfect_interarrival_parameter)
+
+    # create a boxplot for the urgency in each benchmark and save it
+    boxplot_by_benchmark_save(hdf_instances, 'inter_mean_norm',
+                              inter_mean_norm_plt, folder,
+                              perfect_interarrival_parameter)
+
+    # create a histogram with interarrivals mean values for each benchmark
+    histplot_by_benchmark(hdf, 'inter_mean', inter_mean_plt, folder,
+                          perfect_interarrival_parameter)
+
+    # create a histogram with interarrivals mean values normalized for
+    # each benchmark
+    histplot_by_benchmark(hdf, 'inter_mean_norm', inter_mean_norm_plt, folder,
+                          perfect_interarrival_parameter, sharex=True)
 
     # create scatterplts with dynamism x urgency values for each benchmark
     # each point represents an instance
