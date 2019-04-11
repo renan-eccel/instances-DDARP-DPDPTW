@@ -23,6 +23,9 @@ def column_hist(hdf, column, column_plt, benchmark, folder,
     plt.savefig(folder + 'hist_' + column + '_' + benchmark + '_'
                 + perfect_interarrival_parameter
                 + '.png')
+    plt.savefig(folder + 'hist_' + column + '_' + benchmark + '_'
+                + perfect_interarrival_parameter
+                + '.eps')
     plt.close()
 
 
@@ -61,6 +64,9 @@ def histplot_by_benchmark(hdf, column, column_plt, folder,
     plt.savefig(folder + 'hist_' + column + '_by_benchmark_'
                 + perfect_interarrival_parameter
                 + '.png')
+    plt.savefig(folder + 'hist_' + column + '_by_benchmark_'
+                + perfect_interarrival_parameter
+                + '.eps')
     plt.close()
 
 
@@ -79,6 +85,9 @@ def scatterplot_by_benchmark(hdf, x_column, y_column, x_column_plt,
     plt.savefig(folder + 'scatterplot_' + x_column + '_x_' + y_column + '_'
                 + perfect_interarrival_parameter
                 + '.png')
+    plt.savefig(folder + 'scatterplot_' + x_column + '_x_' + y_column + '_'
+                + perfect_interarrival_parameter
+                + '.eps')
     plt.close()
 
 
@@ -101,6 +110,9 @@ def pairplot_by_benchmark(hdf, columns, columns_plt, folder,
         plt.savefig(folder + 'pairplot_' + benchmark + '_'
                     + perfect_interarrival_parameter
                     + '.png')
+        plt.savefig(folder + 'pairplot_' + benchmark + '_'
+                    + perfect_interarrival_parameter
+                    + '.eps')
         plt.close()
 
 
@@ -122,6 +134,9 @@ def boxplot_by_benchmark_save(hdf, column, column_plt, folder,
     plt.savefig(folder + 'boxplot_' + column + '_by_benchmark_'
                 + perfect_interarrival_parameter
                 + '.png')
+    plt.savefig(folder + 'boxplot_' + column + '_by_benchmark_'
+                + perfect_interarrival_parameter
+                + '.eps')
     plt.close()
 
 
@@ -137,6 +152,9 @@ def scatterplot(hdf, benchmark, x_column, y_column, color, x_column_plt,
     plt.savefig(folder + 'scatterplot_' + x_column + '_x_' + y_column + '_'
                 + benchmark + '_' + perfect_interarrival_parameter
                 + '.png')
+    plt.savefig(folder + 'scatterplot_' + x_column + '_x_' + y_column + '_'
+                + benchmark + '_' + perfect_interarrival_parameter
+                + '.eps')
     plt.close()
 
 

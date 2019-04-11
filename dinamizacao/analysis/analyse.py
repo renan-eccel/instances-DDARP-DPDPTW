@@ -61,7 +61,7 @@ if __name__ == '__main__':
     create_and_save_plots = True
     save_poisson_test = False
     perfect_interarrival_parameter = 'planing_horizon'
-    folder = './figures/'
+    folder = './fig/analyses/'
 
     df = pd.read_pickle('df_requests.zip')
     columns_to_group = ['problem', 'benchmark', 'instance']
