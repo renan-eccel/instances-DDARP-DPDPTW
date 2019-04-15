@@ -6,7 +6,7 @@ import plots
 import matplotlib.pyplot as plt
 import importlib
 import seaborn as sns
-sns.set(style='ticks')
+sns.set(style='ticks', font="Times New Roman")
 
 
 def calculate_dynamism_urgency_and_scale(df, perfect_interarrival_parameter):
