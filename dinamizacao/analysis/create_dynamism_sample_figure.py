@@ -1,6 +1,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+sns.set(style='ticks', font="Times New Roman")
 
 data = (
     {'seq': [i for i in range(1, 7) for j in range(1, 11)],
