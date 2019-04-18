@@ -75,8 +75,7 @@ def scatterplot_by_benchmark(hdf, x_column, y_column, x_column_plt,
                              perfect_interarrival_parameter):
     g = sns.FacetGrid(hdf, col='citation', hue='citation', sharey=False,
                       palette='colorblind', despine=False, xlim=(0, 1),
-                      col_wrap=3, height=2.5,
-                      aspect=1.5)
+                      col_wrap=3, height=2.5, aspect=1.5)
     g.map(plt.scatter, x_column, y_column, s=0.5)
     g.set_titles('{col_name}')
     g.set_xlabels(x_column_plt)
@@ -155,6 +154,23 @@ def scatterplot(hdf, benchmark, x_column, y_column, color, x_column_plt,
     plt.savefig(folder + 'scatterplot_' + x_column + '_x_' + y_column + '_'
                 + benchmark + '_' + perfect_interarrival_parameter
                 + '.eps')
+    plt.close()
+
+
+def facetgrid_scatterplot(hdf, x_column, y_column, color, x_column_plt,
+                          y_column_plt, color_plt, folder,
+                          perfect_interarrival_parameter):
+    g = sns.FacetGrid(hdf, col='citation', col_wrap=3, sharey=False,
+                      sharex=False, despine=False, height=2.5, aspect=1.5)
+    g.map(sns.scatterplot, x_column, y_column, color)
+    g.set_xlabels(x_column_plt)
+    g.set_ylabels(y_column_plt)
+    g.set_titles('{col_name}')
+    plt.tight_layout()
+    plt.savefig(folder + 'facetgrid_scatterplot_' + x_column + '_x_' + y_column
+                + '_' + perfect_interarrival_parameter + '.png')
+    plt.savefig(folder + 'facetgrid_scatterplot_' + x_column + '_x_' + y_column
+                + '_' + perfect_interarrival_parameter + '.eps')
     plt.close()
 
 
@@ -241,6 +257,18 @@ def plot_figures(hdf, columns_to_group, folder,
     scatterplot_by_benchmark(hdf, 'dynamism', 'urgency',
                              dynamisnm_plt, urgency_plt, folder,
                              perfect_interarrival_parameter)
+
+    # create a pickup_lower_tw x arrival_time for each benchmark
+    facetgrid_scatterplot(hdf, 'pickup_lower_tw', 'arrival_time', 'urgency',
+                          pickup_lower_tw_plt, arrival_time_plt,
+                          urgency_plt, folder,
+                          perfect_interarrival_parameter)
+
+    # create a pickup_upper_tw x arrival_time for each benchmark
+    facetgrid_scatterplot(hdf, 'pickup_upper_tw', 'arrival_time', 'urgency',
+                          pickup_upper_tw_plt, arrival_time_plt,
+                          urgency_plt, folder,
+                          perfect_interarrival_parameter)
 
     # create a pickup_upper_tw x arrival_time for berbelgia
     scatterplot(hdf, 'berbeglia', 'pickup_upper_tw', 'arrival_time', 'urgency',
