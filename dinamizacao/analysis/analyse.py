@@ -7,7 +7,7 @@ import plots
 import matplotlib.pyplot as plt
 import importlib
 import seaborn as sns
-sns.set(style='ticks', font="Times New Roman")
+sns.set(style='ticks', font="Times New Roman", font_scale=1.35)
 locale.setlocale(locale.LC_NUMERIC, 'pt_BR.UTF-8')
 plt.rcParams.update({'axes.formatter.use_locale': True})
 

@@ -178,8 +178,8 @@ def plot_figures(hdf, columns_to_group, folder,
     dynamisnm_plt = 'Dinamismo'
     urgency_plt = 'Urgência (min)'
     urgency_mean_plt = 'Urgência média (min)'
-    interarrival_plt = 'Intervalo entre chegadas (min)'
-    arrival_time_plt = 'Instante de chegada (min)'
+    interarrival_plt = 'Intervalo entre chegadas\n(min)'
+    arrival_time_plt = 'Instante de chegada\n(min)'
     pickup_upper_tw_plt = ('Limite superior da janela\n'
                            + 'de tempo de coleta (min)')
     pickup_lower_tw_plt = ('Limite inferior da janela\n'
