@@ -1,4 +1,5 @@
 import pandas as pd
+import locale
 import numpy as np
 import analysis_tools
 import test_poisson
@@ -7,6 +8,8 @@ import matplotlib.pyplot as plt
 import importlib
 import seaborn as sns
 sns.set(style='ticks', font="Times New Roman")
+locale.setlocale(locale.LC_NUMERIC, 'pt_BR.UTF-8')
+plt.rcParams.update({'axes.formatter.use_locale': True})
 
 
 def calculate_dynamism_urgency_and_scale(df, perfect_interarrival_parameter):
