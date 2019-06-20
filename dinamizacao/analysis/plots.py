@@ -30,7 +30,8 @@ def column_hist(hdf, column, column_plt, benchmark, folder,
 
 def histplot_by_benchmark(hdf, column, column_plt, folder,
                           perfect_interarrival_parameter,
-                          upper_xlims=None, sharex=False):
+                          upper_xlims=None, sharex=False,
+                          ylim=None, xlim=None, bins=10):
 
     def set_xlim_for_axes(axes, x_upper_lims):
         for i in range(len(axes)):
@@ -51,8 +52,9 @@ def histplot_by_benchmark(hdf, column, column_plt, folder,
     )
     g = sns.FacetGrid(hdf_notnull, col='citation', hue='citation',
                       sharey=False, sharex=sharex, palette='colorblind',
-                      despine=False, col_wrap=3, height=2.5, aspect=1.5)
-    g.map(weighted_hist, column, 'weight', bins=25)
+                      despine=False, col_wrap=3, height=2.5, aspect=1.5,
+                      ylim=ylim, xlim=xlim)
+    g.map(weighted_hist, column, 'weight', bins=bins)
     g.set_titles('{col_name}')
     g.set_xlabels(column_plt)
     g.set_ylabels('Frequência')
@@ -71,10 +73,10 @@ def histplot_by_benchmark(hdf, column, column_plt, folder,
 
 def scatterplot_by_benchmark(hdf, x_column, y_column, x_column_plt,
                              y_column_plt, folder,
-                             perfect_interarrival_parameter):
+                             perfect_interarrival_parameter, ylim=None):
     g = sns.FacetGrid(hdf, col='citation', hue='citation', sharey=False,
                       palette='colorblind', despine=False, xlim=(0, 1),
-                      col_wrap=3, height=2.5, aspect=1.5)
+                      ylim=ylim, col_wrap=3, height=2.5, aspect=1.5)
     g.map(plt.scatter, x_column, y_column, s=0.5)
     g.set_titles('{col_name}')
     g.set_xlabels(x_column_plt)
@@ -158,14 +160,16 @@ def scatterplot(hdf, benchmark, x_column, y_column, color, x_column_plt,
 
 def facetgrid_scatterplot(hdf, x_column, y_column, color, x_column_plt,
                           y_column_plt, color_plt, folder,
-                          perfect_interarrival_parameter):
+                          perfect_interarrival_parameter,
+                          **kwargs):
     g = sns.FacetGrid(hdf, col='citation', col_wrap=3, sharey=False,
-                      sharex=False, despine=False, height=2.5, aspect=1.5)
-    g.map(sns.scatterplot, x_column, y_column, color)
+                      sharex=False, despine=False, height=2.5, aspect=1.5,
+                      **kwargs)
+    g = g.map(sns.scatterplot, x_column, y_column, color, sizes=(40, 40))
+    g.add_legend(title=color_plt)
     g.set_xlabels(x_column_plt)
     g.set_ylabels(y_column_plt)
     g.set_titles('{col_name}')
-    plt.tight_layout()
     plt.savefig(folder + 'facetgrid_scatterplot_' + x_column + '_x_' + y_column
                 + '_' + perfect_interarrival_parameter + '.png')
     plt.savefig(folder + 'facetgrid_scatterplot_' + x_column + '_x_' + y_column
@@ -177,11 +181,16 @@ def plot_figures(hdf, columns_to_group, folder,
                  perfect_interarrival_parameter):
     dynamisnm_plt = 'Dinamismo'
     urgency_plt = 'Urgência (min)'
-    urgency_mean_plt = 'Urgência média (min)'
-    interarrival_plt = 'Intervalo entre chegadas\n(min)'
-    arrival_time_plt = 'Instante de chegada\n(min)'
+    urgency_norm_max_plt = 'Urgência normalizada'
+    urgency_mean_plt = 'Urgência média\n' + '(min)'
+    urgency_mean_norm_plt = 'Urgência média\n' + 'normalizada'
+    interarrival_plt = 'Intervalo entre chegadas\n' + '(min)'
+    arrival_time_plt = 'Instante de chegada\n' + '(min)'
+    arrival_time_norm_h_plt = 'Instante de chegada\n' + 'normalizado'
     pickup_upper_tw_plt = ('Limite superior da janela\n'
                            + 'de tempo de coleta (min)')
+    pltw_norm_h_plt = ('Limite inferior normalizado\n'
+                       + 'da janela de tempo de coleta')
     pickup_lower_tw_plt = ('Limite inferior da janela\n'
                            + 'de tempo de coleta (min)')
     inter_mean_plt = 'Intervalo médio entre\n' + 'chegadas de pedidos (min)'
@@ -190,15 +199,35 @@ def plot_figures(hdf, columns_to_group, folder,
 
     # create an histogram for each bechmark showing the distribution of request
     # numbers over the planing_horizon
-    # upper_xlims = list(hdf.groupby(['problem', 'benchmark']).planing_horizon
-    #                   .max())
     histplot_by_benchmark(hdf, 'arrival_time', arrival_time_plt, folder,
-                          perfect_interarrival_parameter)
+                          perfect_interarrival_parameter,
+                          bins=np.arange(0, 1, 0.1))
+
+    # create an histogram for each bechmark showing the distribution of request
+    # numbers over the planing_horizon
+    histplot_by_benchmark(hdf, 'arrival_time_norm_h', arrival_time_norm_h_plt,
+                          folder, perfect_interarrival_parameter,
+                          ylim=(0, 0.75), xlim=(-0.05, 1),
+                          bins=np.arange(0, 1, 0.1))
 
     # create an histogram for each benchmark showing the distribution of
     # pickup_lower_tw
     histplot_by_benchmark(hdf, 'pickup_lower_tw', pickup_lower_tw_plt,
                           folder, perfect_interarrival_parameter)
+
+    # create an histogram for each benchmark showing the distribution of
+    # pltw_norm_h
+    histplot_by_benchmark(hdf, 'pltw_norm_h', pltw_norm_h_plt,
+                          folder, perfect_interarrival_parameter,
+                          ylim=(0, 0.75), xlim=(-0.05, 1),
+                          bins=np.arange(0, 1, 0.1))
+
+    # create an histogram for each benchmark showing the distribution of
+    # real_pltw_norm_h
+    histplot_by_benchmark(hdf, 'real_pltw_norm_h', pltw_norm_h_plt,
+                          folder, perfect_interarrival_parameter,
+                          ylim=(0, 0.75), xlim=(-0.05, 1),
+                          bins=np.arange(0, 1, 0.1))
 
     # create an histogram for each benchmark showing the distribution of
     # pickup_lower_tw
@@ -220,6 +249,9 @@ def plot_figures(hdf, columns_to_group, folder,
     hdf_instances = (
         hdf.loc[:, ['citation', 'dynamism', 'urgency_mean', 'urgency_std',
                     'inter_mean_norm', 'planing_horizon']]
+           .assign(urgency_mean_norm_max=lambda x:
+                   x.urgency_mean
+                   / x.groupby(level='benchmark').urgency_mean.max())
            .groupby(columns_to_group + ['citation']).max().reset_index()
     )
 
@@ -245,11 +277,18 @@ def plot_figures(hdf, columns_to_group, folder,
     histplot_by_benchmark(hdf, 'inter_mean_norm', inter_mean_norm_plt, folder,
                           perfect_interarrival_parameter, sharex=True)
 
-    # create scatterplts with dynamism x urgency values for each benchmark
-    # each point represents an instance
+    # create scatterplts with dynamism x urgency_mean values for each
+    # benchmark, each point represents an instance
     scatterplot_by_benchmark(hdf_instances, 'dynamism', 'urgency_mean',
                              dynamisnm_plt, urgency_mean_plt, folder,
                              perfect_interarrival_parameter)
+
+    # create scatterplts with dynamism x urgency_mean_norm_max
+    # values for each benchmark, each point represents an instance
+    scatterplot_by_benchmark(hdf_instances, 'dynamism',
+                             'urgency_mean_norm_max',
+                             dynamisnm_plt, urgency_mean_norm_plt, folder,
+                             perfect_interarrival_parameter, ylim=(0, 1))
 
     # create scatterplts with dynamism x urgency values for each benchmark
     # each point represents a request
@@ -268,6 +307,24 @@ def plot_figures(hdf, columns_to_group, folder,
                           pickup_upper_tw_plt, arrival_time_plt,
                           urgency_plt, folder,
                           perfect_interarrival_parameter)
+
+    # create a pltw_norm_h x arrival_time_norm_h for each benchmark
+    facetgrid_scatterplot(hdf, 'pltw_norm_h', 'arrival_time_norm_h',
+                          'urgency_norm_max',
+                          pltw_norm_h_plt, arrival_time_norm_h_plt,
+                          urgency_norm_max_plt, folder,
+                          perfect_interarrival_parameter,
+                          xlim=(-0.05, 1),
+                          ylim=(0, 1))
+
+    # create a pltw_norm_h x arrival_time_norm_h for each benchmark
+    facetgrid_scatterplot(hdf, 'real_pltw_norm_h', 'arrival_time_norm_h',
+                          'urgency_norm_max',
+                          pltw_norm_h_plt, arrival_time_norm_h_plt,
+                          urgency_norm_max_plt, folder,
+                          perfect_interarrival_parameter,
+                          xlim=(-0.05, 1),
+                          ylim=(0, 1))
 
     # create a pickup_upper_tw x arrival_time for berbelgia
     scatterplot(hdf, 'berbeglia', 'pickup_upper_tw', 'arrival_time', 'urgency',

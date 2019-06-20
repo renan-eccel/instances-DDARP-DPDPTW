@@ -33,6 +33,17 @@ def calculate_dynamism_urgency_and_scale(df, perfect_interarrival_parameter):
         .assign(lam_poisson=lambda x:
                 (x.number_of_requests / x.planing_horizon)
                 .groupby(columns_to_group).max())
+        .assign(real_pickup_lower_tw=lambda x:
+                x.loc[:, ['arrival_time', 'pickup_lower_tw']]
+                 .apply(max, axis='columns'))
+        .assign(pltw_norm_h=lambda x:
+                x.pickup_lower_tw / x.planing_horizon)
+        .assign(real_pltw_norm_h=lambda x:
+                x.real_pickup_lower_tw / x.planing_horizon)
+        .assign(arrival_time_norm_h=lambda x:
+                x.arrival_time / x.planing_horizon)
+        .assign(urgency_norm_max=lambda x:
+                x.urgency / x.groupby(level='benchmark').urgency.max())
     )
     return hdf
 
@@ -60,6 +71,23 @@ def create_figures(hdf, columns_to_group, folder,
 
 
 if __name__ == '__main__':
+    dynamisnm_plt = 'Dinamismo'
+    urgency_plt = 'Urgência (min)'
+    urgency_norm_max_plt = 'Urgência normalizada'
+    urgency_mean_plt = 'Urgência média\n' + '(min)'
+    urgency_mean_norm_plt = 'Urgência média\n' + 'normalizada'
+    interarrival_plt = 'Intervalo entre chegadas\n' + '(min)'
+    arrival_time_plt = 'Instante de chegada\n' + '(min)'
+    arrival_time_norm_h_plt = 'Instante de chegada\n' + 'normalizado'
+    pickup_upper_tw_plt = ('Limite superior da janela\n'
+                           + 'de tempo de coleta (min)')
+    pltw_norm_h_plt = ('Limite inferior normalizado\n'
+                       + 'da janela de tempo de coleta')
+    pickup_lower_tw_plt = ('Limite inferior da janela\n'
+                           + 'de tempo de coleta (min)')
+    inter_mean_plt = 'Intervalo médio entre\n' + 'chegadas de pedidos (min)'
+    inter_mean_norm_plt = inter_mean_plt + ' normalizada'
+
     # parameters
     create_and_save_plots = True
     save_poisson_test = False
