@@ -31,7 +31,8 @@ def column_hist(hdf, column, column_plt, benchmark, folder,
 def histplot_by_benchmark(hdf, column, column_plt, folder,
                           perfect_interarrival_parameter,
                           upper_xlims=None, sharex=False,
-                          ylim=None, xlim=None, bins=10):
+                          sharey=False, ylim=None, xlim=None,
+                          bins=10):
 
     def set_xlim_for_axes(axes, x_upper_lims):
         for i in range(len(axes)):
@@ -51,7 +52,7 @@ def histplot_by_benchmark(hdf, column, column_plt, folder,
            .pipe(create_weight_column)
     )
     g = sns.FacetGrid(hdf_notnull, col='citation', hue='citation',
-                      sharey=False, sharex=sharex, palette='colorblind',
+                      sharey=sharey, sharex=sharex, palette='colorblind',
                       despine=False, col_wrap=3, height=2.5, aspect=1.5,
                       ylim=ylim, xlim=xlim)
     g.map(weighted_hist, column, 'weight', bins=bins)
