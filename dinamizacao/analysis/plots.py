@@ -74,8 +74,9 @@ def histplot_by_benchmark(hdf, column, column_plt, folder,
 
 def scatterplot_by_benchmark(hdf, x_column, y_column, x_column_plt,
                              y_column_plt, folder,
-                             perfect_interarrival_parameter, ylim=None):
-    g = sns.FacetGrid(hdf, col='citation', hue='citation', sharey=False,
+                             perfect_interarrival_parameter, ylim=None,
+                             sharey=False):
+    g = sns.FacetGrid(hdf, col='citation', hue='citation', sharey=sharey,
                       palette='colorblind', despine=False, xlim=(0, 1),
                       ylim=ylim, col_wrap=3, height=2.5, aspect=1.5)
     g.map(plt.scatter, x_column, y_column, s=0.5)
@@ -289,7 +290,8 @@ def plot_figures(hdf, columns_to_group, folder,
     scatterplot_by_benchmark(hdf_instances, 'dynamism',
                              'urgency_mean_norm_max',
                              dynamisnm_plt, urgency_mean_norm_plt, folder,
-                             perfect_interarrival_parameter, ylim=(0, 1))
+                             perfect_interarrival_parameter, ylim=(0, 1),
+                             sharey=True)
 
     # create scatterplts with dynamism x urgency values for each benchmark
     # each point represents a request
