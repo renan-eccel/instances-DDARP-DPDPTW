@@ -191,6 +191,8 @@ def plot_figures(hdf, columns_to_group, folder,
     arrival_time_norm_h_plt = 'Instante de chegada\n' + 'normalizado'
     pickup_upper_tw_plt = ('Limite superior da janela\n'
                            + 'de tempo de coleta (min)')
+    putw_norm_h_plt = ('Limite superior normalizado\n'
+                       + 'da janela de tempo de coleta')
     pltw_norm_h_plt = ('Limite inferior normalizado\n'
                        + 'da janela de tempo de coleta')
     pickup_lower_tw_plt = ('Limite inferior da janela\n'
@@ -220,6 +222,13 @@ def plot_figures(hdf, columns_to_group, folder,
     # create an histogram for each benchmark showing the distribution of
     # pltw_norm_h
     histplot_by_benchmark(hdf, 'pltw_norm_h', pltw_norm_h_plt,
+                          folder, perfect_interarrival_parameter,
+                          ylim=(0, 0.75), xlim=(-0.05, 1),
+                          bins=np.arange(0, 1, 0.1))
+
+    # create an histogram for each benchmark showing the distribution of
+    # putw_norm_h
+    histplot_by_benchmark(hdf, 'putw_norm_h', putw_norm_h_plt,
                           folder, perfect_interarrival_parameter,
                           ylim=(0, 0.75), xlim=(-0.05, 1),
                           bins=np.arange(0, 1, 0.1))

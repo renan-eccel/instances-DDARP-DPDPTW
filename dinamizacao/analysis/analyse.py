@@ -34,10 +34,11 @@ def calculate_dynamism_urgency_and_scale(df, perfect_interarrival_parameter):
                 (x.number_of_requests / x.planing_horizon)
                 .groupby(columns_to_group).max())
         .assign(real_pickup_lower_tw=lambda x:
-                x.loc[:, ['arrival_time', 'pickup_lower_tw']]
-                 .apply(max, axis='columns'))
+                x.loc[:, ['arrival_time', 'pickup_lower_tw']].max(axis=1))
         .assign(pltw_norm_h=lambda x:
                 x.pickup_lower_tw / x.planing_horizon)
+        .assign(putw_norm_h=lambda x:
+                x.pickup_upper_tw / x.planing_horizon)
         .assign(real_pltw_norm_h=lambda x:
                 x.real_pickup_lower_tw / x.planing_horizon)
         .assign(arrival_time_norm_h=lambda x:
