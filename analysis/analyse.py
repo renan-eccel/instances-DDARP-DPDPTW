@@ -53,7 +53,7 @@ def create_citation_column(df):
     benchmarks = df.reset_index().benchmark.unique()
     citation = ['Berbeglia et al. (2012)', 'Fabri e Recht (2006)',
                 'Gendreau et al. (2006)', 'Mitrovic-Minic et al. (2004)',
-                'Pankratz e Krypczyk (2009)', 'Pureza e Laporte (2008)']
+                'Pankratz (2005)', 'Pureza e Laporte (2008)']
     citation_by_benchmark = dict(zip(benchmarks, citation))
     df_out = (
         df.copy()
