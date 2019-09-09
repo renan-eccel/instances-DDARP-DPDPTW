@@ -120,3 +120,4 @@ if __name__ == '__main__':
     if create_and_save_plots:
         create_figures(hdf, columns_to_group, folder,
                        perfect_interarrival_parameter, save_poisson_test)
+
