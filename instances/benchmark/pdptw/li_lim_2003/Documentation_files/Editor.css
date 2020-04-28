@@ -1,0 +1,305 @@
+/* ------ Text items -------- */
+a
+{
+	color: #FF6600;
+	text-decoration: none;
+	/*font-size:small;*/
+}
+div.Ingress, .Ingress .Title
+{
+    margin-bottom: 12px;   
+}
+.Ingress
+{
+ 
+    font-weight: bold;
+}
+    
+a:hover
+{
+	color: #B31D1E;
+}
+#MainAreaDiv a:visited, #RightRegion a:visited, .TextContent a:visited
+{
+	color: #CC5200;
+}
+#MainContainerDiv a:visited:hover
+{
+	color: #B31D1E;
+}
+a.UpperCaseLink
+{
+	font-weight: bold;
+	text-decoration: none;
+}
+a.RightListing
+{
+	text-decoration: none;
+	display: block;
+	padding-left: 1em;
+	margin: 0.2em 0;	
+}
+a.LinkList
+{
+	text-decoration: none;
+}
+body
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 75%;
+	padding: 0; 
+	margin: 0;
+}
+form
+{
+	padding: 0px;
+	margin: 0px;
+}
+a img
+{
+	border: none;
+}
+.DateListingText
+{
+	color: #606060; 
+	font-size: 1em; 
+	font-style: italic; 
+}
+h1, h2, h3, ul, ol, p
+{
+	margin-top: 0em;
+}
+ul 
+{
+	list-style-position: outside;
+	padding-left: 1em;
+	margin-left: 1em;
+}
+ol
+{
+	list-style-position: outside;
+	padding-left: 2em;
+	margin-left: 1em;
+}
+ul
+{
+	list-style-type: square;
+	list-style-image: url(bullet1.gif);
+}
+ul ul
+{
+	list-style-type: square;
+	list-style-image: url(bullet2.gif);
+}
+h1, .heading1
+{
+	font-size: 150%;
+	font-weight: normal;
+	color: #003366;
+	font-family: Arial, Helvetica, sans-serif;
+	EditMenuName: Overskrift 1;
+}
+h2, .heading2, .Ingress .Title
+{
+	font-size: 150%;
+	color: #9F9F87;
+	font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+	EditMenuName: Overskrift 2;
+}
+h3, .heading3
+{
+	font-size: 125%;
+	font-weight: bold;
+	color: #003366;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.introduction
+{
+	font-weight: bold;
+	EditMenuName: Uthevet avsnitt;
+}
+.figure
+{
+	background-color: #F4F4EF;
+	border: 1px solid #DCE2E7;
+	padding: 8px;
+	EditMenuName: Figurboks;
+}
+.figuretext
+{
+	color: #9F9F87;
+	EditMenuName: Figur- / tabelltekst;
+}
+table.table
+{
+	EditMenuName: Tabell;
+}
+table.table
+{
+	/*
+	background-image: url(/images/sintef/grey_pixel.gif);
+	background-position: right top;
+	background-repeat: repeat-y;
+	*/
+}
+table.table tr
+{
+}
+table.table tr td
+{
+	padding: 2px 10px 2px 10px;
+	background-image: url(dotted.gif);
+	background-position: left bottom;
+	background-repeat: repeat-x;
+	border-left: 1px solid #DCE2E7;
+}
+table.table tr th
+{
+	background-color: #B31D1D;
+	color: #FFFFFF;
+	padding: 6px 10px 4px 10px;
+	border: 1px solid #9A1818;
+}
+
+/* Inserted for search */
+.highlight 
+{
+    color: #b82f2f;
+    font-weight: bold;
+    padding: 3px 3px 20px 3px;
+}
+.highlight .inner 
+{
+    color: #0000FF;
+}
+.alignRight
+{
+    text-align: right;  
+}
+.size80 
+{
+    width:80%;
+}
+
+.metatext
+{
+	color: #9F9F87;
+	margin-top: 12px !important;
+}
+.contactinfo
+{
+}
+.imagetext 
+{
+	color: #9F9F87;
+	font-size: 90%;
+}
+.red
+{
+	color: #CC0000;
+}
+.date
+{
+	color: #103468;
+	font-size: 90%;
+}
+
+.MetaText
+{
+	color: #103468;
+	font-size: 90%;
+}
+
+hr
+{
+	height: 0.1em;
+	color: #ddd;
+}
+input, textarea
+{
+	font-family: Arial, Helvetica, sans-serif;
+	color: #003366;
+	font-size: 1em;
+	margin: 0.2em;
+}
+
+input[disabled='disabled'] {
+    /*background-color: #ececec;*/
+    color:blue;
+    cursor:default;
+}
+
+p
+{
+	font-family: Arial, Helvetica, sans-serif;
+}
+select
+{
+	font-size: 9px;/*1em*/
+	margin: 0em;    /*0.2em*/
+}
+span.errormessage
+{
+	color: #a00;
+	font-size: 1.3em;
+}
+.inputlabel
+{
+	width: 6em;
+	padding-top: 0.4em;
+	font-weight: bold;
+}
+.inputlabelwide
+{
+	width: 10em;	
+	padding-top: 0.4em;
+	font-weight: bold;
+}
+
+.checkBoxes 
+{
+    color: #000000;
+    border:1px #000000;
+}
+.advancedSearchLabels 
+{
+    margin-left: 4px;
+    margin-top: 0px;
+    color: #000000;
+    font-size: 11px;
+}
+
+img.quicksearch
+{
+	position: relative;
+	top: 0.2em;
+	width: 2.3em;
+	height: 1.7em;
+	border: 0;
+}
+span.usernamelabel
+{
+	padding-top: 0.5em;
+	display: block;
+}
+table
+{
+	font-size: 1em;
+}
+th
+{
+	text-align: left;
+}
+tr.evenrow
+{
+	background-color: #eee;
+}
+tr.unevenrow
+{
+	background-color: #fff;
+}
+tr.headerrow
+{
+	background-color: #ccc;
+}
