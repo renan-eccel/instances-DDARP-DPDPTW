@@ -41,6 +41,7 @@ def dinamize_as_berbeglia(pickup_location_x_coord,
                           pickup_service_time,
                           alpha,
                           beta):
+
     travel_time = calculate_travel_time(pickup_location_x_coord,
                                         pickup_location_y_coord,
                                         delivery_location_x_coord,
@@ -58,13 +59,14 @@ def dinamize_as_berbeglia(pickup_location_x_coord,
     return arrival_time
 
 
-def dinamize_as_pureza(depot_location_x,
-                       depot_location_y,
-                       pickup_location_x_coord,
-                       pickup_location_y_coord,
-                       pickup_lower_tw,
-                       pickup_upper_tw,
-                       beta):
+def dinamize_as_pureza_laporte(depot_location_x,
+                               depot_location_y,
+                               pickup_location_x_coord,
+                               pickup_location_y_coord,
+                               pickup_lower_tw,
+                               pickup_upper_tw,
+                               beta):
+
     travel_time = calculate_travel_time(depot_location_x,
                                         depot_location_y,
                                         pickup_location_x_coord,
@@ -78,4 +80,66 @@ def dinamize_as_pureza(depot_location_x,
                    )
           )
     )
+    return arrival_time
+
+
+def dinamize_as_pankratz(depot_location_x,
+                         depot_location_y,
+                         pickup_location_x_coord,
+                         pickup_location_y_coord,
+                         delivery_location_x_coord,
+                         delivery_location_y_coord,
+                         pickup_upper_tw,
+                         pickup_lower_tw,
+                         delivery_upper_tw,
+                         pickup_service_time,
+                         beta):
+
+    pickup_delivery_travel_time = calculate_travel_time(
+        pickup_location_x_coord,
+        pickup_location_y_coord,
+        delivery_location_x_coord,
+        delivery_location_y_coord
+    )
+    depot_pickup_travel_time = calculate_travel_time(
+        depot_location_x,
+        depot_location_y,
+        pickup_location_x_coord,
+        pickup_location_y_coord
+    )
+    a_latest = (
+        elementwise_min(
+            pickup_upper_tw,
+            (delivery_upper_tw
+             - pickup_delivery_travel_time - pickup_service_time)
+        )
+        - depot_pickup_travel_time
+    )
+
+    arrival_time = beta * a_latest
+
+    return arrival_time
+
+
+def dinamize_as_fabri_recht(pickup_location_x_coord,
+                            pickup_location_y_coord,
+                            delivery_location_x_coord,
+                            delivery_location_y_coord,
+                            pickup_lower_tw,
+                            delivery_upper_tw):
+
+    pickup_delivery_travel_time = calculate_travel_time(
+        pickup_location_x_coord,
+        pickup_location_y_coord,
+        delivery_location_x_coord,
+        delivery_location_y_coord,
+    )
+    arrival_time = rnd.randint(
+        0,
+        elementwise_min(
+            pickup_lower_tw,
+            delivery_upper_tw - pickup_delivery_travel_time
+        )
+    )
+
     return arrival_time
