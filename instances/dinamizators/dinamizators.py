@@ -1,5 +1,4 @@
 import numpy as np
-import math
 import random as rnd
 
 
@@ -8,7 +7,8 @@ def calculate_travel_time(pickup_location_x_coord,
                           delivery_location_x_coord,
                           delivery_location_y_coord):
     '''
-    Calculate euclidian distance between 2 points
+    Calculate euclidian distance between 2 points.
+    The value is rounded to the next integer value.
     '''
     euclidian_distance = (
         (
@@ -90,7 +90,6 @@ def dinamize_as_pankratz(depot_location_x,
                          delivery_location_x_coord,
                          delivery_location_y_coord,
                          pickup_upper_tw,
-                         pickup_lower_tw,
                          delivery_upper_tw,
                          pickup_service_time,
                          beta):
@@ -116,7 +115,7 @@ def dinamize_as_pankratz(depot_location_x,
         - depot_pickup_travel_time
     )
 
-    arrival_time = beta * a_latest
+    arrival_time = np.ceil(beta * a_latest)
 
     return arrival_time
 
@@ -134,12 +133,14 @@ def dinamize_as_fabri_recht(pickup_location_x_coord,
         delivery_location_x_coord,
         delivery_location_y_coord,
     )
-    arrival_time = rnd.randint(
-        0,
+    latest_arrival_time = (
         elementwise_min(
             pickup_lower_tw,
             delivery_upper_tw - pickup_delivery_travel_time
         )
+        + 1
     )
+
+    arrival_time = np.random.randint(latest_arrival_time)
 
     return arrival_time
