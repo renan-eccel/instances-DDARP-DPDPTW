@@ -50,7 +50,10 @@ def dinamize_as_berbeglia(pickup_location_x_coord,
                                delivery_upper_tw
                                - travel_time
                                - pickup_service_time)
-    arrival_time = a_latest.subtract(beta).rename('arrival_time')
+    arrival_time = elementwise_max(
+        a_latest.subtract(beta).rename('arrival_time'),
+        0,
+    )
     static_requests = (
         arrival_time.sample(round(alpha * arrival_time.size))
     )

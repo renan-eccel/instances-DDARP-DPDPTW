@@ -101,9 +101,9 @@ def test_dinamize_as_berbeglia():
     pickup_location_y_coord = pd.Series([1])
     delivery_location_x_coord = pd.Series([-1])
     delivery_location_y_coord = pd.Series([-1])
-    pickup_upper_tw = pd.Series([10])
-    delivery_upper_tw = pd.Series([12])
-    pickup_service_time = pd.Series([1])
+    pickup_upper_tw = pd.Series([10.0])
+    delivery_upper_tw = pd.Series([12.0])
+    pickup_service_time = pd.Series([1.0])
     alpha = 0
     beta = 1
     # tempo esperado usando a equação de dinamização de berbeglia
