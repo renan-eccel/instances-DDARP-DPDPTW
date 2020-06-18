@@ -1,24 +1,25 @@
 import pandas as pd
 
 
-def calculate_dynamism(df, perfect_interarrival_parameter):
+def calculate_dynamism(df, columns_to_group, perfect_interarrival_parameter):
     '''
     Calculate the dynamism measure proposed by van_lon_2016
     params:
         df
+        columns_to_group
         perfect_interarrival_parameter: choose between 'planing_horizon' or
                                         'arrival_horizon'
     '''
-    columns_to_group = ['problem', 'benchmark', 'instance']
-
+    multi_index = columns_to_group + ['id']
+    sort_index = columns_to_group + ['arrival_time']
     hdf = (
-        df.set_index(['problem', 'benchmark', 'instance', 'id'])
-        .sort_values(['problem', 'benchmark', 'instance', 'arrival_time'])
+        df.set_index(multi_index)
+        .sort_values(sort_index)
         .assign(arrival_horizon=lambda x:
                 x.groupby(['problem', 'benchmark']).arrival_time.max()
                 - x.groupby(['problem', 'benchmark']).arrival_time.min())
         .assign(interarrival=lambda x:
-                x.groupby(['problem', 'benchmark', 'instance'])
+                x.groupby(columns_to_group)
                  .arrival_time.diff(periods=-1)*(-1))
         .assign(perfect_interarrival=lambda x:
                 x[perfect_interarrival_parameter] / x.number_of_requests)
@@ -83,6 +84,7 @@ def calculate_dynamism(df, perfect_interarrival_parameter):
         last_values = values
 
     # check if all rows of the dataframe resulted in an interarrival_deviation
+    import ipdb; ipdb.set_trace()
     assert hdf.shape[0] == len(info_by_index.get('interarrival_gap'))
     assert hdf.shape[0] == len(info_by_index.get('perfect_interarrival_gap'))
 

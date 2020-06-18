@@ -1,20 +1,22 @@
 import pandas as pd
 import locale
 import numpy as np
-import analysis_tools
-import test_poisson
-import plots
+from . import analysis_tools
+from . import test_poisson
+from . import plots
 import matplotlib.pyplot as plt
-import importlib
 import seaborn as sns
 sns.set(style='ticks', font="Times New Roman", font_scale=1.35)
 locale.setlocale(locale.LC_NUMERIC, 'pt_BR.UTF-8')
 plt.rcParams.update({'axes.formatter.use_locale': True})
 
 
-def calculate_dynamism_urgency_and_scale(df, perfect_interarrival_parameter):
+def calculate_dynamism_urgency_and_scale(df,
+                                         columns_to_group,
+                                         perfect_interarrival_parameter):
     hdf = (
         df.pipe(analysis_tools.calculate_dynamism,
+                columns_to_group,
                 perfect_interarrival_parameter)
         .pipe(analysis_tools.calculate_urgency)
         .pipe(analysis_tools.calculate_requests_per_vehicle)
@@ -115,6 +117,7 @@ if __name__ == '__main__':
     hdf = (
         df.pipe(create_citation_column)
         .pipe(calculate_dynamism_urgency_and_scale,
+              columns_to_group,
               perfect_interarrival_parameter)
     )
     if create_and_save_plots:

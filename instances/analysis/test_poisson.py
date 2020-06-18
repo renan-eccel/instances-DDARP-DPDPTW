@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import analysis_tools
+from . import analysis_tools
 import matplotlib.pyplot as plt
 
 
