@@ -4,8 +4,8 @@ import random
 
 
 def dinamize_all(df_in):
-    static_atributes = ['problem', 'benchmark', 'instance',
-                        'number_of_requests', 'id',
+    static_atributes = ['problem', 'benchmark', 'instance', 'id',
+                        'number_of_requests', 'number_of_vehicles',
                         'planing_horizon',
                         'delivery_lower_tw', 'delivery_service_time',
                         'delivery_upper_tw', 'pickup_lower_tw',
@@ -19,7 +19,6 @@ def dinamize_all(df_in):
           df_in
           .reset_index()
           .loc[:, static_atributes]
-          .drop_duplicates()
           .replace(to_replace='fabri_and_rencht_2006',
                    value='fabri_rencht_2006')
           .assign(berbeglia_2012_1=lambda df:
@@ -199,7 +198,7 @@ def dinamize_all(df_in):
     df_tidy = (
         df.melt(id_vars=id_vars, value_vars=value_vars,
                 var_name='dinamizator', value_name='arrival_time')
-          .assign(dinamizator=lambda x:
-                  x.dinamizator.str.extract(r'(\w*\d{4})', expand=False))
+          # .assign(dinamizator=lambda x:
+          #         x.dinamizator.str.extract(r'(\w*\d{4})', expand=False))
     )
     return df_tidy

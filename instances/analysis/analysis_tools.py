@@ -24,7 +24,6 @@ def calculate_dynamism(df, columns_to_group, perfect_interarrival_parameter):
         .assign(perfect_interarrival=lambda x:
                 x[perfect_interarrival_parameter] / x.number_of_requests)
     )
-
     last_values = None
     info_by_index = {'interarrival_gap': {},
                      'perfect_interarrival_gap': {}
@@ -32,7 +31,7 @@ def calculate_dynamism(df, columns_to_group, perfect_interarrival_parameter):
     '''
     Calculate the interarrival_gap and the perfect_interarrival_gap for each
     request. This values are designeted by a piece-wise function which
-    independent variables are: interarrival,perfect_interarrival and the
+    independent variables are: interarrival, perfect_interarrival and the
     previous interarrival_gap.
 
     For better understandig please read session 4.3 of van_lon_2016
@@ -84,9 +83,8 @@ def calculate_dynamism(df, columns_to_group, perfect_interarrival_parameter):
         last_values = values
 
     # check if all rows of the dataframe resulted in an interarrival_deviation
-    import ipdb; ipdb.set_trace()
-    assert hdf.shape[0] == len(info_by_index.get('interarrival_gap'))
-    assert hdf.shape[0] == len(info_by_index.get('perfect_interarrival_gap'))
+    # assert hdf.shape[0] == len(info_by_index.get('interarrival_gap'))
+    # assert hdf.shape[0] == len(info_by_index.get('perfect_interarrival_gap'))
 
     interarrival_gap = pd.Series(info_by_index.get('interarrival_gap'))
     perfect_interarrival_gap = pd.Series(info_by_index.get(
