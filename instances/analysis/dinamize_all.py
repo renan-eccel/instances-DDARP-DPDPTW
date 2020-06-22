@@ -198,7 +198,7 @@ def dinamize_all(df_in):
     df_tidy = (
         df.melt(id_vars=id_vars, value_vars=value_vars,
                 var_name='dinamizator', value_name='arrival_time')
-          # .assign(dinamizator=lambda x:
-          #         x.dinamizator.str.extract(r'(\w*\d{4})', expand=False))
+          .assign(dinamizator_short=lambda x:
+                  x.dinamizator.str.extract(r'(\w*\d{4})', expand=False))
     )
     return df_tidy
