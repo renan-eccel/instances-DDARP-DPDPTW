@@ -1,4 +1,3 @@
-import pandas as pd
 import instances.dinamizators.dinamizators as din
 import random
 

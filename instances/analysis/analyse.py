@@ -1,9 +1,9 @@
 import pandas as pd
 import locale
 import numpy as np
-from . import analysis_tools
-from . import test_poisson
-from . import plots
+from instances.analysis import analysis_tools
+from instances.analysis import test_poisson
+from instances.analysis import plots
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(style='ticks', font="Times New Roman", font_scale=1.35)
@@ -95,9 +95,9 @@ if __name__ == '__main__':
     create_and_save_plots = True
     save_poisson_test = False
     perfect_interarrival_parameter = 'planing_horizon'
-    folder = './fig/analyses/'
+    folder = 'instances/analysis/fig/analysis/'
 
-    df = pd.read_pickle('df_requests.zip')
+    df = pd.read_pickle('instances/analysis/df_requests.zip')
     columns_to_group = ['problem', 'benchmark', 'instance']
 
     # fix inf values represented as NaN
