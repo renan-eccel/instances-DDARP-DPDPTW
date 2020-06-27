@@ -48,7 +48,6 @@ df_dyn_urg_ins = (
     )
 )
 
-
 g = sns.FacetGrid(df_dyn_urg_ins,
                   col='cite_benchmark',
                   row='cite_dinamizator',
@@ -66,7 +65,6 @@ g.set_ylabels('Normalized\n urgency average')
 plt.tight_layout()
 plt.savefig('instances/transportes_2020/fig/urgency_x_dynamism.png')
 plt.close()
-
 
 g = sns.FacetGrid(df_dyn_urg_ins,
                   row='cite_benchmark',
