@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import instances.analysis.dinamize_all as dinamize_all
 import instances.analysis.analyse as analyse
 
+sns.set(style='ticks', font="Times New Roman", font_scale=1.35)
+
 columns_to_group = ['problem', 'benchmark', 'instance', 'dinamizator']
 df_static_requests = (
     pd.read_pickle('./instances/analysis/df_static_requests.zip')
@@ -29,16 +31,44 @@ df_dyn_urg_ins = (
     )
     .groupby(['problem', 'benchmark', 'dinamizator',
               'instance']).max().reset_index()
+    .assign(
+        cite_benchmark=lambda x:
+        x.benchmark.map(
+             {'cordeau_2006': 'Ropke et al. (2007)',
+              'li_lim_2003': 'Li and Lim (2003)',
+              'cordeau_laporte_2003': 'Cordeau and Laporte (2003)'}
+        ),
+        cite_dinamizator=lambda x:
+        x.dinamizator_short.map(
+            {'berbeglia_2012': 'Berbeglia et al. (2012)',
+             'fabri_rencht_2006': 'Fabri and Recht (2006)',
+             'pankratz_2005': 'Pankratz (2005)',
+             'pureza_laporte_2008': 'Pureza and Laporte (2008)'}
+        )
+    )
 )
 
-g = sns.FacetGrid(df_dyn_urg_ins, col='benchmark', row='dinamizator_short',
-                  despine=False)
-g.map(sns.scatterplot, 'dynamism', 'urgency_mean_norm_max', 'benchmark')
+
+g = sns.FacetGrid(df_dyn_urg_ins,
+                  col='cite_benchmark',
+                  row='cite_dinamizator',
+                  hue='cite_benchmark',
+                  despine=False,
+                  palette='colorblind',
+                  xlim=(0, 1),
+                  height=2.5,
+                  aspect=1.5,
+                  )
+g.map(plt.scatter, 'dynamism', 'urgency_mean_norm_max', s=4)
+g.set_titles('{col_name}\nby {row_name}')
+g.set_xlabels('Dynamism')
+g.set_ylabels('Normalized\n urgency average')
+plt.tight_layout()
 plt.savefig('instances/transportes_2020/fig/urgency_x_dynamism.png')
-plt.close()
 
-
-g = sns.FacetGrid(df_dyn_urg_ins, col='benchmark', despine=False)
-g.map(sns.boxplot, 'dynamism', 'dinamizator_short')
+g = sns.FacetGrid(df_dyn_urg_ins, row='cite_benchmark', despine=False)
+g.map(sns.boxplot, 'dynamism', 'cite_dinamizator')
+g.set_titles('{row_name}')
 plt.savefig('instances/transportes_2020/fig/dynamism_boxplot.png')
-plt.close()
+
+plt.show()
