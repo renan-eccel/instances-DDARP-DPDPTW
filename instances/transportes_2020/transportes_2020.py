@@ -25,7 +25,7 @@ df_dyn_urg_ins = (
     .assign(
         urgency_mean_norm_max=lambda x:
         x.urgency_mean
-        / x.groupby(['benchmark', 'dinamizator']).urgency_mean.transform('max')
+        / x.groupby(['benchmark']).urgency_mean.transform('max')
     )
     .groupby(['problem', 'benchmark', 'dinamizator',
               'instance']).max().reset_index()
