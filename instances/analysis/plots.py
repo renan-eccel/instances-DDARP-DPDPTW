@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import locale
 
 
 def weighted_hist(x, weights, **kwargs):
@@ -180,6 +181,9 @@ def facetgrid_scatterplot(hdf, x_column, y_column, color, x_column_plt,
 
 def plot_figures(hdf, columns_to_group, folder,
                  perfect_interarrival_parameter):
+    sns.set(style='ticks', font="Times New Roman", font_scale=1.35)
+    locale.setlocale(locale.LC_NUMERIC, 'pt_BR.UTF-8')
+    plt.rcParams.update({'axes.formatter.use_locale': True})
     dynamisnm_plt = 'Dinamismo'
     urgency_plt = 'Urgência (min)'
     urgency_norm_max_plt = 'Urgência normalizada'

@@ -1,14 +1,8 @@
 import pandas as pd
-import locale
 import numpy as np
 from instances.analysis import analysis_tools
 from instances.analysis import test_poisson
 from instances.analysis import plots
-import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set(style='ticks', font="Times New Roman", font_scale=1.35)
-locale.setlocale(locale.LC_NUMERIC, 'pt_BR.UTF-8')
-plt.rcParams.update({'axes.formatter.use_locale': True})
 
 
 def calculate_dynamism_urgency_and_scale(df,
@@ -123,4 +117,3 @@ if __name__ == '__main__':
     if create_and_save_plots:
         create_figures(hdf, columns_to_group, folder,
                        perfect_interarrival_parameter, save_poisson_test)
-
