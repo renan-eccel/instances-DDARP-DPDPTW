@@ -1,5 +1,4 @@
 import instances.dinamizators.dinamizators as din
-import random
 
 
 def dinamize_all(df_in):
@@ -39,7 +38,7 @@ def dinamize_all(df_in):
                                             df.delivery_upper_tw,
                                             df.pickup_service_time,
                                             0,
-                                            random.randint(60, 240)),
+                                            (60, 240)),
                   pureza_laporte_2008_1=lambda df:
                   din.dinamize_as_pureza_laporte(df.depot_location_x,
                                                  df.depot_location_y,

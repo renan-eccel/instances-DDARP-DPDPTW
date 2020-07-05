@@ -1,15 +1,18 @@
+
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import instances.analysis.dinamize_all as dinamize_all
 import instances.analysis.analyse as analyse
+import random
 
 
 def weighted_hist(x, weights, **kwargs):
     plt.hist(x, weights=weights, **kwargs)
 
 
+random.seed(42)
 sns.set(style='ticks', font="Times New Roman", font_scale=1.35)
 
 columns_to_group = ['problem', 'benchmark', 'instance', 'dinamizator']
@@ -45,6 +48,8 @@ df_dyn_urg_req = (
             x.loc[:, ['arrival_time', 'pickup_lower_tw']].max(axis=1),
         real_pltw_norm_h=lambda x:
             x.real_pickup_lower_tw / x.planing_horizon,
+        real_putw_norm_h=lambda x:
+            x.pickup_upper_tw / x.planing_horizon,
         arrival_time_norm_h=lambda x:
             x.arrival_time / x.planing_horizon,
         weight=lambda x:
@@ -56,7 +61,10 @@ df_dyn_urg_ins = (
     .assign(
         urgency_mean_norm_max=lambda x:
         x.urgency_mean
-        / x.groupby(['benchmark']).urgency_mean.transform('max')
+        / x.groupby(['benchmark']).urgency_mean.transform('max'),
+        mean_arrival_time_norm_h=lambda x:
+        x.groupby(['cite_benchmark', 'cite_dinamizator'])
+         .arrival_time_norm_h.transform('mean')
     )
     .groupby(['problem', 'benchmark', 'dinamizator',
               'instance']).max().reset_index()
@@ -74,25 +82,35 @@ g = sns.FacetGrid(df_dyn_urg_ins,
                   )
 g.map(plt.scatter, 'dynamism', 'urgency_mean_norm_max', s=4)
 g.set_titles('{col_name}\nby {row_name}')
-g.set_xlabels('Dynamism')
-g.set_ylabels('Normalized\n urgency average')
+g.set_xlabels('Degree of dynamism')
+g.set_ylabels('Normalized\n average urgency')
 plt.tight_layout()
-plt.savefig('instances/transportes_2020/fig/urgency_x_dynamism.png')
+plt.savefig('instances/transportes_2020/fig/urgency_x_dynamism.png',
+            bbox_inches=0)
 plt.close()
 
-g = sns.FacetGrid(df_dyn_urg_ins,
+var_list = list(df_dyn_urg_ins.columns)
+var_list.remove('dynamism')
+var_list.remove('urgency_mean_norm_max')
+df_pivot = df_dyn_urg_ins.melt(id_vars=var_list)
+
+g = sns.FacetGrid(df_pivot,
                   row='cite_benchmark',
+                  col='variable',
                   palette='colorblind',
                   despine=False,
                   xlim=(0, 1),
                   height=2.5,
-                  aspect=2.5,
+                  aspect=2.4,
                   )
-g.map(sns.boxplot, 'dynamism', 'cite_dinamizator')
+g.map(sns.boxplot, 'value', 'cite_dinamizator')
 g.set_titles('{row_name}')
 g.set(ylabel=None)
+g.axes[2, 0].set_xlabel('Degree of dynamism')
+g.axes[2, 1].set_xlabel('Normalized average urgency')
 plt.tight_layout()
-plt.savefig('instances/transportes_2020/fig/dynamism_boxplot.png')
+plt.savefig('instances/transportes_2020/fig/dynamism_boxplot.png',
+            bbox_inches=0)
 plt.close()
 
 g = sns.boxplot(x='dynamism',
@@ -101,35 +119,71 @@ g = sns.boxplot(x='dynamism',
                 data=df_dyn_urg_ins,
                 palette='colorblind',
                 )
-g.set_xlabel('Dynamism')
+g.set_xlabel('Degree of dynamism')
 g.legend(title=None)
 g.set_ylabel(None)
 plt.xlim(0, 1)
 plt.tight_layout()
-plt.savefig('instances/transportes_2020/fig/dynamism_boxplot_2.png')
+plt.savefig('instances/transportes_2020/fig/dynamism_boxplot_2.png',
+            bbox_inches=0)
 plt.close()
 
 g = sns.FacetGrid(df_dyn_urg_req,
                   col='cite_benchmark',
                   hue='cite_benchmark',
                   palette='colorblind',
-                  height=2.5,
+                  height=3.0,
                   aspect=1.5,
                   xlim=(-0.05, 1),
                   despine=False,)
 g.map(weighted_hist,
       'real_pltw_norm_h',
       'weight',
+      bins=np.arange(0, 1.1, 0.1))
+
+g.map(weighted_hist,
+      'real_pltw_norm_h',
+      'weight',
+      cumulative=True,
+      histtype='step',
       bins=np.arange(0, 1, 0.1))
 g.set_titles('{col_name}')
-g.set_xlabels('Normalized time windows\n'
-              + 'lower limit')
+g.set_xlabels('Normalized lower limit\n of pickup time window')
 g.set_ylabels('Frequency')
 plt.tight_layout()
-plt.savefig('instances/transportes_2020/fig/pickup_lower_tw_hist.png')
+plt.savefig('instances/transportes_2020/fig/pickup_lower_tw_hist.png',
+            bbox_inches=0)
 plt.close()
 
-df_corr = (
+g = sns.FacetGrid(df_dyn_urg_req,
+                  col='cite_benchmark',
+                  hue='cite_benchmark',
+                  palette='colorblind',
+                  height=3.0,
+                  aspect=1.5,
+                  xlim=(-0.05, 1),
+                  despine=False,)
+g.map(weighted_hist,
+      'real_putw_norm_h',
+      'weight',
+      bins=np.arange(0, 1.1, 0.1))
+
+g.map(weighted_hist,
+      'real_putw_norm_h',
+      'weight',
+      cumulative=True,
+      histtype='step',
+      bins=np.arange(0, 1.1, 0.1))
+g.set_titles('{col_name}')
+g.set_xlabels('Normalized upper limit\n of pickup time window')
+g.set_ylabels('Frequency')
+plt.tight_layout()
+plt.savefig('instances/transportes_2020/fig/pickup_upper_tw_hist.png',
+            bbox_inches=0)
+plt.close()
+
+
+df_corr_arrival_pltw = (
     df_dyn_urg_req
     .groupby(['cite_benchmark', 'cite_dinamizator'])
     [['arrival_time_norm_h', 'real_pltw_norm_h']]
@@ -140,24 +194,46 @@ df_corr = (
     .rename({'real_pltw_norm_h': 'r'}, axis=1)
     .round(2)
 )
-df_corr.to_csv('instances/transportes_2020/fig/arrival_time_x_pltw_corr.csv')
+df_corr_arrival_pltw.to_csv('instances/transportes_2020/'
+                            + 'fig/arrival_time_x_pltw_corr.csv')
 
-df_static_requests_per = (
-    (
+df_static_requests_benchmark_per = (
+    df_dyn_urg_req
+    [df_dyn_urg_req.arrival_time == 0]
+    .groupby(['cite_benchmark', 'cite_dinamizator'])
+    .arrival_time
+    .count()
+    /
+    df_dyn_urg_req
+    .groupby(['cite_benchmark', 'cite_dinamizator'])
+    .arrival_time
+    .count()
+)
+df_n_static_requests_instance = (
         df_dyn_urg_req
         [df_dyn_urg_req.arrival_time == 0]
-        .groupby(['cite_benchmark', 'cite_dinamizator'])
+        .groupby(['cite_benchmark', 'cite_dinamizator', 'instance'])
         .arrival_time
         .count()
         /
         df_dyn_urg_req
-        .groupby(['cite_benchmark', 'cite_dinamizator'])
+        .groupby(['cite_benchmark', 'cite_dinamizator', 'instance'])
         .arrival_time
         .count()
-    )
+)
+df_static_requests_benchmark_per_mean_std = (
+    df_n_static_requests_instance
+    .groupby(['cite_benchmark', 'cite_dinamizator'])
+    .agg(['mean', 'std'])
+)
+df_static_req_info = (
+    df_static_requests_benchmark_per_mean_std
+    .join(df_static_requests_benchmark_per)
+    .rename({'arrival_time': 'total'}, axis=1)
+    [['total', 'mean', 'std']]
     .fillna(0)
     .round(3)
     .multiply(100)
 )
-df_static_requests_per.to_csv('instances/transportes_2020/fig/'
-                              + 'df_static_requests_per.csv')
+df_static_req_info.to_csv('instances/transportes_2020/fig/'
+                          + 'df_static_requests_per.csv')

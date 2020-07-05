@@ -41,6 +41,8 @@ def dinamize_as_berbeglia(pickup_location_x_coord,
                           pickup_service_time,
                           alpha,
                           beta):
+    if type(beta) is tuple:
+        beta = np.random.randint(*beta, size=pickup_location_x_coord.size)
 
     travel_time = calculate_travel_time(pickup_location_x_coord,
                                         pickup_location_y_coord,
